@@ -5,13 +5,18 @@
     using System.Linq;
     using System.Text;
     using Microsoft.MetadirectoryServices;
+    using System.Collections;
 
     /// <summary>
     /// Converts data between types
     /// </summary>
     public static class TypeConverter
     {
-        public static void ThrowOnAnyInvalidDataType(IEnumerable<object> obj)
+        /// <summary>
+        /// Throws an <c ref="InvalidCastException">InvalidCastException</c> when an enumerable contains any object of a data type that is not supported by the type converter
+        /// </summary>
+        /// <param name="obj">An IEnumerable collection of objects to evaluate</param>
+        public static void ThrowOnAnyInvalidDataType(IEnumerable obj)
         {
             if (obj == null)
             {
@@ -24,6 +29,10 @@
             }
         }
 
+        /// <summary>
+        /// Throws an <c ref="InvalidCastException">InvalidCastException</c> if an object is of a data type that is not supported by the type converter
+        /// </summary>
+        /// <param name="obj">An object to evaluate</param>
         public static void ThrowOnInvalidDataType(object obj)
         {
             if (obj == null)
@@ -37,6 +46,11 @@
             }
         }
 
+        /// <summary>
+        /// Returns a value indicating whether the object is of a data type supported by the type converter. The type converter supports Int32, Int64, Boolean, GUID, byte[], String and DateTime data types
+        /// </summary>
+        /// <param name="obj">The object to evaluate</param>
+        /// <returns>True if the type converter supports the type of object provided</returns>
         public static bool IsValidDataType(object obj)
         {
             return obj is bool || obj is long || obj is int || obj is Guid || obj is byte[] || obj is string || obj is DateTime;
@@ -84,6 +98,11 @@
             }
         }
 
+        /// <summary>
+        /// Returns the metadirectory services data type for a given object
+        /// </summary>
+        /// <param name="obj">The object to determine the data type for</param>
+        /// <returns>A value of the <c ref="AttributeType">AttributeType</c> enumeration</returns>
         public static AttributeType GetDataType(object obj)
         {
             if (obj == null)
@@ -91,27 +110,27 @@
                 throw new ArgumentNullException("obj");
             }
 
-            Type objectType = obj.GetType();
+            Type t = obj.GetType();
 
-            if (objectType == typeof(string))
+            if (t == typeof(string))
             {
                 return AttributeType.String;
             }
-            else if (objectType == typeof(int) || objectType == typeof(long))
+            else if (t == typeof(int) || t == typeof(long))
             {
                 return AttributeType.Integer;
             }
-            else if (objectType == typeof(bool))
+            else if (t == typeof(bool))
             {
                 return AttributeType.Boolean;
             }
-            else if (objectType == typeof(byte[]))
+            else if (t == typeof(byte[]))
             {
                 return AttributeType.Binary;
             }
-            else if (objectType == typeof(Guid))
+            else if (t == typeof(Guid))
             {
-                return AttributeType.Reference;
+                return AttributeType.String;
             }
             else
             {

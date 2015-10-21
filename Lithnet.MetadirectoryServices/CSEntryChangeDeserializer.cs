@@ -9,8 +9,16 @@ using System.IO;
 
 namespace Lithnet.MetadirectoryServices
 {
+    /// <summary>
+    /// Contains methods for deserializing XML representations of <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> objects created by the <see cref="Lithnet.MetadirectoryServices.CSEntryChangeSerializer"/> class
+    /// </summary>
     public static class CSEntryChangeDeserializer
     {
+        /// <summary>
+        /// Deserializes a file into a list of <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> objects
+        /// </summary>
+        /// <param name="file">The file of <see ref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChanges</see> to deserialize</param>
+        /// <returns>A list of <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChanges</see></returns>
         public static IList<CSEntryChange> Deserialize(string file)
         {
             List<CSEntryChange> csentries = new List<CSEntryChange>();
@@ -23,7 +31,7 @@ namespace Lithnet.MetadirectoryServices
 
                     foreach (var node in doc.Root.Elements("object-change"))
                     {
-                        CSEntryChange csentry = CSEntryChangeDeserializer.Deserialize(node, false);
+                        CSEntryChange csentry = CSEntryChangeDeserializer.Deserialize(node);
                         csentries.Add(csentry);
                     }
 
@@ -33,14 +41,24 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
-        public static CSEntryChange Deserialize(XElement element, bool throwOnMissingAttribute)
+        /// <summary>
+        /// Deserializes an XML representation of a <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see>
+        /// </summary>
+        /// <param name="element">An <c ref="System.Linq.Xml.XElement">XElement</c> containing a cs-entry element</param>
+        /// <returns>a <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> object</returns>
+        public static CSEntryChange Deserialize(XElement element)
         {
             CSEntryChange csentry = CSEntryChange.Create();
-            CSEntryChangeDeserializer.Deserialize(element, csentry, throwOnMissingAttribute);
+            CSEntryChangeDeserializer.Deserialize(element, csentry);
             return csentry;
         }
 
-        public static void Deserialize(XElement element, CSEntryChange csentry, bool throwOnMissingAttribute)
+        /// <summary>
+        /// Deserializes an XML representation of a <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> into an existing object
+        /// </summary>
+        /// <param name="element">An <c ref="System.Linq.Xml.XElement">XElement</c> containing a cs-entry element</param>
+        /// <param name="csentry">The <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> to populate</param>
+        private static void Deserialize(XElement element, CSEntryChange csentry)
         {
             if (element.Name.LocalName != "object-change")
             {
@@ -73,7 +91,7 @@ namespace Lithnet.MetadirectoryServices
                 }
                 else if (child.Name.LocalName == "attribute-changes")
                 {
-                    XmlReadAttributeChangesNode(child, csentry, throwOnMissingAttribute);
+                    XmlReadAttributeChangesNode(child, csentry);
                 }
                 else if (child.Name.LocalName == "anchor-attributes")
                 {
@@ -82,14 +100,24 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
-        private static void XmlReadAttributeChangesNode(XElement element, CSEntryChange csentry, bool throwOnMissingAttribute)
+        /// <summary>
+        /// Reads the <![CDATA[<attribute-changes>]]> node of the XML representation of the <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see>
+        /// </summary>
+        /// <param name="element">An <c ref="System.Linq.Xml.XElement">XElement</c> containing an <![CDATA[<attribute-changes>]]> element</param>
+        /// <param name="csentry">The <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> to populate</param>
+        private static void XmlReadAttributeChangesNode(XElement element, CSEntryChange csentry)
         {
             foreach (var child in element.Elements().Where(t => t.Name.LocalName == "attribute-change"))
             {
-                CSEntryChangeDeserializer.XmlReadAttributeChangeNode(child, csentry, throwOnMissingAttribute);
+                CSEntryChangeDeserializer.XmlReadAttributeChangeNode(child, csentry);
             }
         }
 
+        /// <summary>
+        /// Reads the <![CDATA[<anchor-attributes>]]> node of the XML representation of the <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see>
+        /// </summary>
+        /// <param name="element">An <c ref="System.Linq.Xml.XElement">XElement</c> containing an <![CDATA[<ancchor-attributes>]]> element</param>
+        /// <param name="csentry">The <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> to populate</param>
         private static void XmlReadAnchorAttributesNode(XElement element, CSEntryChange csentry)
         {
             foreach (var child in element.Elements().Where(t => t.Name.LocalName == "anchor-attribute"))
@@ -98,6 +126,11 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
+        /// <summary>
+        /// Reads the <![CDATA[<anchor-attribute>]]> node of the XML representation of the <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see>
+        /// </summary>
+        /// <param name="element">An <c ref="System.Linq.Xml.XElement">XElement</c> containing an <![CDATA[<ancchor-attribute>]]> element</param>
+        /// <param name="csentry">The <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> to populate</param>
         private static void XmlReadAnchorAttributeNode(XElement element, CSEntryChange csentry)
         {
             string name = null;
@@ -131,7 +164,12 @@ namespace Lithnet.MetadirectoryServices
             csentry.AnchorAttributes.Add(anchor);
         }
 
-        private static void XmlReadAttributeChangeNode(XElement element, CSEntryChange csentry, bool throwOnMissingAttribute)
+        /// <summary>
+        /// Reads the <![CDATA[<attribute-change]]> node of the XML representation of the <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see>
+        /// </summary>
+        /// <param name="element">An <c ref="System.Linq.Xml.XElement">XElement</c> containing an <![CDATA[<attribute-change>]]> element</param>
+        /// <param name="csentry">The <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> to populate</param>
+        private static void XmlReadAttributeChangeNode(XElement element, CSEntryChange csentry)
         {
             string name = null;
             AttributeModificationType modificationType = AttributeModificationType.Unconfigured;
@@ -175,7 +213,7 @@ namespace Lithnet.MetadirectoryServices
                         dataType = AttributeType.String;
                     }
 
-                    valueChanges = CSEntryChangeDeserializer.GetValueChanges(child, dataType);
+                    valueChanges = CSEntryChangeDeserializer.XmlReadValueChangesNode(child, dataType);
                 }
             }
 
@@ -227,13 +265,19 @@ namespace Lithnet.MetadirectoryServices
 
         }
 
-        private static List<ValueChange> GetValueChanges(XElement element, AttributeType attributeType)
+        /// <summary>
+        /// Reads the <![CDATA[<value-changes>]]> node of the XML representation of the <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see>
+        /// </summary>
+        /// <param name="element">An <c ref="System.Linq.Xml.XElement">XElement</c> containing an <![CDATA[<value-changes>]]> element</param>
+        /// <param name="attributeType">The type of attribute to read</param>
+        /// <returns>A list of ValueChanges</returns>
+        private static List<ValueChange> XmlReadValueChangesNode(XElement element, AttributeType attributeType)
         {
             List<ValueChange> valueChanges = new List<ValueChange>();
 
             foreach (var child in element.Elements().Where(t => t.Name.LocalName == "value-change"))
             {
-                ValueChange change = CSEntryChangeDeserializer.GetValueChange(child, attributeType);
+                ValueChange change = CSEntryChangeDeserializer.XmlReadValueChangeNode(child, attributeType);
                 if (change != null)
                 {
                     valueChanges.Add(change);
@@ -243,7 +287,13 @@ namespace Lithnet.MetadirectoryServices
             return valueChanges;
         }
 
-        private static ValueChange GetValueChange(XElement element, AttributeType attributeType)
+        /// <summary>
+        /// Reads the <![CDATA[<value-change>]]> node of the XML representation of the <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see>
+        /// </summary>
+        /// <param name="element">An <c ref="System.Linq.Xml.XElement">XElement</c> containing an <![CDATA[<value-change>]]> element</param>
+        /// <param name="attributeType">The type of attribute to read</param>
+        /// <returns>A ValueChange object</returns>
+        private static ValueChange XmlReadValueChangeNode(XElement element, AttributeType attributeType)
         {
             ValueModificationType modificationType = ValueModificationType.Unconfigured;
             string value = null;

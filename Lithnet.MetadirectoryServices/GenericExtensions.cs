@@ -7,10 +7,20 @@ using System.Runtime.InteropServices;
 
 namespace Lithnet.MetadirectoryServices
 {
+    /// <summary>
+    /// Contains extensions for objects not directly related to MetadirectoryServices components, such as strings and DateTimes
+    /// </summary>
     public static class GenericExtensions
     {
+        /// <summary>
+        /// A .NET custom format string that represents the ISO8601 date format that is used by the FIM Service
+        /// </summary>
         public const string ResourceManagementServiceDateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff";
 
+
+        /// <summary>
+        /// A .NET custom format string that represents the ISO8601 date format that is used by the FIM Service, but has the milliseconds component set to '0'
+        /// </summary>
         public const string ResourceManagementServiceDateFormatZeroedMilliseconds = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'000";
 
         /// <summary>
@@ -44,6 +54,11 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
+        /// <summary>
+        /// Converts a secure string back to its standard string representation
+        /// </summary>
+        /// <param name="securePassword">The secure string value</param>
+        /// <returns>The plain-text representation of the secure string</returns>
         public static string ConvertToUnsecureString(this SecureString securePassword)
         {
             if (securePassword == null)

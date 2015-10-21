@@ -6,8 +6,18 @@ using Microsoft.MetadirectoryServices;
 
 namespace Lithnet.MetadirectoryServices
 {
+    /// <summary>
+    /// Contains extensions to the <see cref="Microsoft.MetadirectoryServices.CSEntryChange"/> object
+    /// </summary>
     public static class CSEntryChangeExtensions
     {
+        /// <summary>
+        /// Gets the value of the specified anchor attribute if it exists, or the default value of the type if it doesn't
+        /// </summary>
+        /// <typeparam name="T">The data type of the anchor attribute</typeparam>
+        /// <param name="csentry">The CSEntryChange to get the anchor value from</param>
+        /// <param name="anchorName">The name of the anchor attribute</param>
+        /// <returns>The value of the anchor attribute, or default(T) if the anchor was not present</returns>
         public static T GetAnchorValueOrDefault<T>(this CSEntryChange csentry, string anchorName)
         {
             AnchorAttribute anchor = csentry.AnchorAttributes.FirstOrDefault(t => t.Name == anchorName);
@@ -22,6 +32,12 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
+        /// <summary>
+        /// Gets the specified anchor attribute
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to get the anchor from</param>
+        /// <param name="anchorName">The name of the anchor attribute</param>
+        /// <returns>The anchor attribute, or null if the anchor was not present</returns>
         public static AnchorAttribute GetAnchorAttribute(this CSEntryChange csentry, string anchorName)
         {
             AnchorAttribute anchor = csentry.AnchorAttributes.FirstOrDefault(t => t.Name == anchorName);
@@ -36,35 +52,13 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
-        public static T GetAnchorValueOrDefault<T>(this CSEntryChange csentry)
-        {
-            AnchorAttribute anchor = csentry.AnchorAttributes.SingleOrDefault();
-
-            if (anchor != null)
-            {
-                return (T)anchor.Value;
-            }
-            else
-            {
-                return default(T);
-            }
-        }
-
-        public static AnchorAttribute GetAnchorAttribute(this CSEntryChange csentry)
-        {
-            AnchorAttribute anchor = csentry.AnchorAttributes.SingleOrDefault();
-
-            if (anchor != null)
-            {
-                return anchor;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static T GetNewDN<T>(this CSEntryChange csentry)
+        /// <summary>
+        /// Searches the CSEntryChange for an AttributeChange with the name 'DN', and if found, returns the new value
+        /// </summary>
+        /// <typeparam name="T">The type of the DN attribute</typeparam>
+        /// <param name="csentry">The CSEntryChange to evaluate</param>
+        /// <returns>The new DN, or default(T) if a DN change was not present</returns>
+        public static T GetNewDNOrDefault<T>(this CSEntryChange csentry)
         {
             AttributeChange change = csentry.AttributeChanges.FirstOrDefault(t => t.Name == "DN");
 
@@ -78,11 +72,18 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
-        public static IList<ValueChange> ToValueChange(this IEnumerable<string> list, ValueModificationType modificationType)
+        /// <summary>
+        /// Converts an enumeration of values to a list of ValueChanges
+        /// </summary>
+        /// <typeparam name="T">The type of the data in the list</typeparam>
+        /// <param name="list">The list of values to convert to ValueChanges</param>
+        /// <param name="modificationType">The modification type to apply to the values in the ValueChange</param>
+        /// <returns>A list of ValueChange objects</returns>
+        public static IList<ValueChange> ToValueChange<T>(this IEnumerable<T> list, ValueModificationType modificationType)
         {
             List<ValueChange> changes = new List<ValueChange>();
 
-            foreach (string value in list)
+            foreach (T value in list)
             {
                 switch (modificationType)
                 {
@@ -103,11 +104,17 @@ namespace Lithnet.MetadirectoryServices
             return changes;
         }
 
-        public static IList<ValueChange> ToValueChangeAdd(this IEnumerable<string> list)
+        /// <summary>
+        /// Converts an enumeration of values to a list of ValueChanges with the modification type set to 'add'
+        /// </summary>
+        /// <typeparam name="T">The type of the data in the list</typeparam>
+        /// <param name="list">The list of values to convert to ValueChanges</param>
+        /// <returns>A list of ValueChange objects with their modification types set to 'add'</returns>
+        public static IList<ValueChange> ToValueChangeAdd<T>(this IEnumerable<T> list)
         {
             List<ValueChange> changes = new List<ValueChange>();
 
-            foreach (string value in list)
+            foreach (T value in list)
             {
                 changes.Add(ValueChange.CreateValueAdd(value));
             }
@@ -115,11 +122,17 @@ namespace Lithnet.MetadirectoryServices
             return changes;
         }
 
-        public static IList<ValueChange> ToValueChangeDelete(this IEnumerable<string> list)
+        /// <summary>
+        /// Converts an enumeration of values to a list of ValueChanges with the modification type set to 'delete'
+        /// </summary>
+        /// <typeparam name="T">The type of the data in the list</typeparam>
+        /// <param name="list">The list of values to convert to ValueChanges</param>
+        /// <returns>A list of ValueChange objects with their modification types set to 'delete'</returns>
+        public static IList<ValueChange> ToValueChangeDelete<T>(this IEnumerable<T> list)
         {
             List<ValueChange> changes = new List<ValueChange>();
 
-            foreach (string value in list)
+            foreach (T value in list)
             {
                 changes.Add(ValueChange.CreateValueDelete(value));
             }
@@ -127,28 +140,86 @@ namespace Lithnet.MetadirectoryServices
             return changes;
         }
 
-        public static void CreateAttributeChange(this CSEntryChange csentry, SchemaType type, string attributeName, object value, AttributeModificationType updateType)
+        /// <summary>
+        /// Gets a value indicating if the specified attribute is present in the list of attribute changes
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to evaluate</param>
+        /// <param name="attributeName">The name of the attribute to find</param>
+        /// <returns>True if the CSEntryChange contains an AttributeChange for the specified attribute</returns>
+        public static bool HasAttributeChange(this CSEntryChange csentry, string attributeName)
         {
-            if (type.HasAttribute(attributeName))
-            {
-                if (value != null)
-                {
-                    csentry.CreateAttributeChange(updateType, attributeName, value);
-                }
-            }
+            return csentry.AttributeChanges.Any(t => t.Name == attributeName);
         }
 
-        public static void CreateAttributeChange(this CSEntryChange csentry, SchemaType type, string attributeName, string value, AttributeModificationType updateType)
+        /// <summary>
+        /// Gets all the value adds for the specified attribute
+        /// </summary>
+        /// <typeparam name="T">The data type of the atttribute</typeparam>
+        /// <param name="csentry">The CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <returns>A list of values from the attribute change if it was present. If the attribute change was not present, or contained no 'add' modifications, an empty list is returned</returns>
+        public static IList<T> GetValueAdds<T>(this CSEntryChange csentry, string attributeName)
         {
-            if (type.HasAttribute(attributeName))
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    csentry.CreateAttributeChange(updateType, attributeName, value);
-                }
-            }
+            return csentry.GetValueChanges<T>(attributeName, ValueModificationType.Add);
         }
 
+        /// <summary>
+        /// Gets all the value deletes for the specified attribute
+        /// </summary>
+        /// <typeparam name="T">The data type of the atttribute</typeparam>
+        /// <param name="csentry">The CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <returns>A list of values from the attribute change if it was present. If the attribute change was not present, or contained no 'delete' modifications, an empty list is returned</returns>
+        public static IList<T> GetValueDeletes<T>(this CSEntryChange csentry, string attributeName)
+        {
+            return csentry.GetValueChanges<T>(attributeName, ValueModificationType.Delete);
+        }
+
+        /// <summary>
+        /// Gets the value changes from the specified attribute 
+        /// </summary>
+        /// <typeparam name="T">The data type of the atttribute</typeparam>
+        /// <param name="csentry">The CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The modification type of the values to get</param>
+        /// <returns>A list of values from the attribute change if it was present. If the attribute change was not present, or contained no modifications matching the type specified by the <paramref name="modificationType"/> parameter, an empty list is returned</returns>
+        public static IList<T> GetValueChanges<T>(this CSEntryChange csentry, string attributeName, ValueModificationType modificationType)
+        {
+            AttributeChange change = csentry.AttributeChanges.FirstOrDefault(t => t.Name == attributeName);
+
+            if (change == null)
+            {
+                return new List<T>();
+            }
+
+            return change.GetValueChanges<T>(modificationType);
+        }
+
+        /// <summary>
+        /// Gets the value add for a single-valued attribute
+        /// </summary>
+        /// <typeparam name="T">The data type of the atttribute</typeparam>
+        /// <param name="csentry">The CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <returns>The value of attribute if present, or default(T) if it is not. If the AttributeChange contains multiple value adds, an exceptioin is thrown</returns>
+        public static T GetValueAdd<T>(this CSEntryChange csentry, string attributeName)
+        {
+            AttributeChange change = csentry.AttributeChanges.FirstOrDefault(t => t.Name == attributeName);
+
+            if (change == null)
+            {
+                return default(T);
+            }
+
+            return change.GetValueAdd<T>();
+        }
+
+        /// <summary>
+        /// Creates an AttributeChange with a single value addition
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="value">The value to add</param>
         public static void CreateAttributeAdd(this CSEntryChange csentry, string attributeName, object value)
         {
             if (value == null)
@@ -159,6 +230,12 @@ namespace Lithnet.MetadirectoryServices
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeAdd(attributeName, value));
         }
 
+        /// <summary>
+        /// Creates an AttributeChange with a mutli-valued addition
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="values">The values to add</param>
         public static void CreateAttributeAdd(this CSEntryChange csentry, string attributeName, IList<object> values)
         {
             if (values == null)
@@ -169,11 +246,22 @@ namespace Lithnet.MetadirectoryServices
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeAdd(attributeName, values));
         }
 
+        /// <summary>
+        /// Creates an AttributeChange with a modification type of delete
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
         public static void CreateAttributeDelete(this CSEntryChange csentry, string attributeName)
         {
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeDelete(attributeName));
         }
 
+        /// <summary>
+        /// Creates an AttributeChange with a single value replacement
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="value">The new value for the attribute</param>
         public static void CreateAttributeReplace(this CSEntryChange csentry, string attributeName, object value)
         {
             if (value == null)
@@ -184,6 +272,12 @@ namespace Lithnet.MetadirectoryServices
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, value));
         }
 
+        /// <summary>
+        /// Creates an AttributeChange with a mutli-valued replacement
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="values">The new values for the attribute</param>
         public static void CreateAttributeReplace(this CSEntryChange csentry, string attributeName, IList<object> values)
         {
             if (values == null)
@@ -200,6 +294,13 @@ namespace Lithnet.MetadirectoryServices
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, values));
         }
 
+        /// <summary>
+        /// Creates an AttributeChange of type Update, with ValueChanges created for the specified value adds and deletes
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="valueAdds">The values to add in the update operation</param>
+        /// <param name="valueDeletes">The values to delete in the update operation</param>
         public static void CreateAttributeUpdate(this CSEntryChange csentry, string attributeName, IList<object> valueAdds, IList<object> valueDeletes)
         {
             List<ValueChange> valueChanges = new List<ValueChange>();
@@ -226,14 +327,27 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
+        /// <summary>
+        /// Creates an AttributeChange of type Update using the specified value changes
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="valueChanges">The values changes to add to the update operation</param>
         public static void CreateAttributeUpdate(this CSEntryChange csentry, string attributeName, IList<ValueChange> valueChanges)
         {
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeUpdate(attributeName, valueChanges));
         }
 
-        public static void CreateAttributeChange(this CSEntryChange csentry, AttributeModificationType updateType, string attributeName, IList<object> values)
+        /// <summary>
+        /// Creates an AttributeChange of the specified type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="values">The values to apply to the modification operation</param>
+        public static void CreateAttributeChange(this CSEntryChange csentry, string attributeName, AttributeModificationType modificationType, IList<object> values)
         {
-            switch (updateType)
+            switch (modificationType)
             {
                 case AttributeModificationType.Add:
                     if (values.Count > 0)
@@ -252,6 +366,10 @@ namespace Lithnet.MetadirectoryServices
                     {
                         csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, values));
                     }
+                    else
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeDelete(attributeName));
+                    }
 
                     break;
 
@@ -264,24 +382,16 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
-        public static void CreateAttributeChange(this CSEntryChange csentry, AttributeModificationType updateType, string attributeName, IList<ValueChange> values)
+        /// <summary>
+        /// Creates an AttributeChange of the specified type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="values">The value changes to apply to the modification operation</param>
+        public static void CreateAttributeChange(this CSEntryChange csentry, string attributeName, AttributeModificationType modificationType, IList<ValueChange> values)
         {
-            if (values.Count == 0)
-            {
-                return;
-            }
-
-            if (csentry.AttributeChanges.Contains(attributeName))
-            {
-                foreach (var valuechange in values)
-                {
-                    csentry.AttributeChanges[attributeName].ValueChanges.Add(valuechange);
-                }
-
-                return;
-            }
-
-            switch (updateType)
+            switch (modificationType)
             {
                 case AttributeModificationType.Delete:
                     csentry.AttributeChanges.Add(AttributeChange.CreateAttributeDelete(attributeName));
@@ -292,7 +402,14 @@ namespace Lithnet.MetadirectoryServices
                     break;
 
                 case AttributeModificationType.Replace:
-                    csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, values));
+                    if (values == null || values.Count == 0)
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeDelete(attributeName));
+                    }
+                    else
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, values));
+                    }
                     break;
 
                 case AttributeModificationType.Update:
@@ -305,9 +422,16 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
-        public static void CreateAttributeChange(this CSEntryChange csentry, AttributeModificationType updateType, string attributeName, object value)
+        /// <summary>
+        /// Creates an AttributeChange of the specified type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="value">The value to apply to the modification operation</param>
+        public static void CreateAttributeChange(this CSEntryChange csentry, string attributeName, AttributeModificationType modificationType, object value)
         {
-            switch (updateType)
+            switch (modificationType)
             {
                 case AttributeModificationType.Add:
                     csentry.AttributeChanges.Add(AttributeChange.CreateAttributeAdd(attributeName, value));
@@ -318,7 +442,14 @@ namespace Lithnet.MetadirectoryServices
                     break;
 
                 case AttributeModificationType.Replace:
-                    csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, value));
+                    if (value == null)
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, value));
+                    }
+                    else
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeDelete(attributeName));
+                    }
                     break;
 
                 case AttributeModificationType.Update:
@@ -331,123 +462,110 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
-        public static void CreateAttributeChange(this CSEntryChange csentry, SchemaType type, string attributeName, IList<string> value, AttributeModificationType updateType)
+        /// <summary>
+        /// Creates an AttributeChange of the specified type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="value">The value to apply to the modification operation</param>
+        public static void CreateAttributeChange<T>(this CSEntryChange csentry, string attributeName, AttributeModificationType modificationType, Nullable<T> value) where T : struct
+        {
+            switch (modificationType)
+            {
+                case AttributeModificationType.Add:
+                    if (value != null)
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeAdd(attributeName, value.Value));
+                    }
+                    break;
+
+                case AttributeModificationType.Delete:
+                    csentry.AttributeChanges.Add(AttributeChange.CreateAttributeDelete(attributeName));
+                    break;
+
+                case AttributeModificationType.Replace:
+                    if (value == null)
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, value));
+                    }
+                    else
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeDelete(attributeName));
+                    }
+                    break;
+
+                case AttributeModificationType.Update:
+                    if (value != null)
+                    {
+                        csentry.AttributeChanges.Add(AttributeChange.CreateAttributeUpdate(attributeName, value));
+                    }
+                    break;
+
+                case AttributeModificationType.Unconfigured:
+                default:
+                    throw new InvalidOperationException("Unknown modification type");
+            }
+        }
+
+        /// <summary>
+        /// Creates an AttributeChange of the specified type, provided that the attribute is present in the provided schema type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="type">The schema type of the object class of the CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="values">The values to apply to the modification operation</param>
+        public static void CreateAttributeChangeIfInSchema<T>(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, IList<T> values)
         {
             if (type.HasAttribute(attributeName))
             {
-                if (value != null && value.Count > 0)
-                {
-                    csentry.CreateAttributeChange(updateType, attributeName, value.Cast<object>().ToList());
-                }
+                csentry.CreateAttributeChange(attributeName, modificationType, values.Cast<object>().ToList());
             }
         }
 
-        public static void CreateAttributeChange(this CSEntryChange csentry, SchemaType type, string attributeName, int? value, AttributeModificationType updateType)
+        /// <summary>
+        /// Creates an AttributeChange of the specified type, provided that the attribute is present in the provided schema type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="type">The schema type of the object class of the CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="value">The value to apply to the modification operation</param>
+        public static void CreateAttributeChangeIfInSchema<T>(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, Nullable<T> value) where T : struct
         {
             if (type.HasAttribute(attributeName))
             {
-                if (value != null && value.HasValue)
-                {
-                    csentry.CreateAttributeChange(updateType, attributeName, value.Value);
-                }
+                    csentry.CreateAttributeChange(attributeName, modificationType, value.Value);
             }
         }
 
-        public static void CreateAttributeChange(this CSEntryChange csentry, SchemaType type, string attributeName, bool? value, AttributeModificationType updateType)
+        /// <summary>
+        /// Creates an AttributeChange of the specified type, provided that the attribute is present in the provided schema type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="type">The schema type of the object class of the CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="value">The value to apply to the modification operation</param>
+        public static void CreateAttributeChangeIfInSchema<T>(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, T value)
         {
             if (type.HasAttribute(attributeName))
             {
-                if (value != null && value.HasValue)
+                if (value != null)
                 {
-                    csentry.CreateAttributeChange(updateType, attributeName, value.Value);
+                    string valueString = value as string;
+
+                    if (string.IsNullOrEmpty(valueString))
+                    {
+                        csentry.CreateAttributeChange(attributeName, modificationType, valueString);
+                    }
+                    else
+                    {
+                        csentry.CreateAttributeChange(attributeName, modificationType, value);
+                    }
                 }
             }
-        }
-
-        public static void CreateAttributeChange(this CSEntryChange csentry, SchemaType type, string attributeName, DateTime? value, AttributeModificationType updateType)
-        {
-            if (type.HasAttribute(attributeName))
-            {
-                if (value != null && value.HasValue)
-                {
-                    csentry.CreateAttributeChange(updateType, attributeName, value.Value.ToResourceManagementServiceDateFormat(true));
-                }
-            }
-        }
-
-        public static bool HasAttributeChange(this CSEntryChange csentry, string attributeName)
-        {
-            return csentry.AttributeChanges.Any(t => t.Name == attributeName);
-        }
-
-        public static IList<T> GetValueAdds<T>(this CSEntryChange csentry, string attributeName)
-        {
-            return csentry.GetValueChanges<T>(attributeName, ValueModificationType.Add);
-        }
-
-        public static IList<T> GetValueDeletes<T>(this CSEntryChange csentry, string attributeName)
-        {
-            return csentry.GetValueChanges<T>(attributeName, ValueModificationType.Delete);
-        }
-
-        public static IList<T> GetValueChanges<T>(this CSEntryChange csentry, string attributeName, ValueModificationType modificationType)
-        {
-            AttributeChange change = csentry.AttributeChanges.FirstOrDefault(t => t.Name == attributeName);
-
-            if (change == null)
-            {
-                return new List<T>();
-            }
-
-            return change.GetValueChanges<T>(modificationType);
-        }
-
-
-        public static T GetValueAdd<T>(this CSEntryChange csentry, string attributeName)
-        {
-            AttributeChange change = csentry.AttributeChanges.FirstOrDefault(t => t.Name == attributeName);
-
-            if (change == null)
-            {
-                return default(T);
-            }
-
-            return change.GetValueAdd<T>();
-        }
-
-        public static T GetValueAdd<T>(this AttributeChange change)
-        {
-            return change.GetValueAdds<T>().SingleOrDefault();
-        }
-
-
-        public static IList<T> GetValueAdds<T>(this AttributeChange change)
-        {
-            return change.GetValueChanges<T>(ValueModificationType.Add);
-        }
-
-        public static IList<T> GetValueDeletes<T>(this AttributeChange change)
-        {
-            return change.GetValueChanges<T>(ValueModificationType.Delete);
-        }
-
-        public static IList<T> GetValueChanges<T>(this AttributeChange change, ValueModificationType modificationType)
-        {
-            List<T> list = new List<T>();
-
-            if (change.ValueChanges == null)
-            {
-                return list;
-            }
-
-            IEnumerable<ValueChange> valueChanges = change.ValueChanges.Where(t => t.ModificationType == modificationType);
-
-            foreach (ValueChange valueChange in valueChanges)
-            {
-                list.Add((T)valueChange.Value);
-            }
-
-            return list;
         }
     }
 }

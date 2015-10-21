@@ -7,8 +7,17 @@ using System.Xml;
 
 namespace Lithnet.MetadirectoryServices
 {
+    /// <summary>
+    /// Contains methods for serializing <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> objects into XML. Objects serialized by this class can be deserialized with the <see cref="Lithnet.MetadirectoryServices.CSEntryChangeDeserializer"/> class
+    /// </summary>
     public static class CSEntryChangeSerializer
     {
+        /// <summary>
+        /// Serializes the collection of CSEntryChange objects into the specified file
+        /// </summary>
+        /// <param name="csentries">The collection of CSEntryChanges to serialize</param>
+        /// <param name="file">The name of the file to serialize the objects to. If this file exists, it will be overwritten</param>
+        /// <param name="schema">The current metadirectory services schema. This is required to ensure that attributes are serialized as the correct data type</param>
         public static void Serialize(IEnumerable<CSEntryChange> csentries, string file, Schema schema)
         {
             XmlWriterSettings settings = new XmlWriterSettings();
@@ -32,6 +41,12 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
+        /// <summary>
+        /// Serializes the specified CSEntryChange using an existing XmlWriter
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to serialize</param>
+        /// <param name="writer">An open XmlWriter to write the serialized data to</param>
+        /// <param name="schema">The current metadirectory services schema. This is required to ensure that attributes are serialized as the correct data type</param>
         public static void Serialize(CSEntryChange csentry, XmlWriter writer, Schema schema)
         {
             writer.WriteStartElement("object-change");
@@ -72,6 +87,12 @@ namespace Lithnet.MetadirectoryServices
             writer.WriteEndElement(); // </object-change>
         }
 
+        /// <summary>
+        /// Writes the <![CDATA[<attribute-changes>]]> node 
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to serialize</param>
+        /// <param name="writer">An open XmlWriter to write the serialized data to</param>
+        /// <param name="schema">The current metadirectory services schema</param>
         private static void XmlWriteAttributeChangesNode(CSEntryChange csentry, XmlWriter writer, Schema schema)
         {
             writer.WriteStartElement("attribute-changes");

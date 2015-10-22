@@ -47,6 +47,12 @@
     <Compile Include="MASample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lithnet.MetadirectoryServices\Lithnet.MetadirectoryServices.csproj">
+      <Project>{1945c053-72ce-4ac0-8a7f-4af43d936b44}</Project>
+      <Name>Lithnet.MetadirectoryServices</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

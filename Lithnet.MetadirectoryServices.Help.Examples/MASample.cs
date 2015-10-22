@@ -7,13 +7,33 @@ using System.Collections.ObjectModel;
 
 namespace Lithnet.MetadirectoryServices
 {
-    public class MASample// : IMAExtensible2CallExport, IMAExtensible2CallImport
+    public class MASample : IMAExtensible2CallExport, IMAExtensible2CallImport
     {
         private string filename = @"D:\MAData\MyMA\Delta.xml";
 
         private Schema operationSchema;
 
         private OpenImportConnectionRunStep importRunStepParameters;
+
+        public int ImportDefaultPageSize
+        {
+            get { return 500; }
+        }
+
+        public int ImportMaxPageSize
+        {
+            get { return 9999; }
+        }
+
+        public int ExportDefaultPageSize
+        {
+            get { return 100; }
+        }
+
+        public int ExportMaxPageSize
+        {
+            get { return 1000; }
+        }
 
         public void OpenExportConnection(KeyedCollection<string, ConfigParameter> configParameters, Schema types, OpenExportConnectionRunStep exportRunStep)
         {
@@ -101,7 +121,7 @@ namespace Lithnet.MetadirectoryServices
 
         public CloseImportConnectionResults CloseImportConnection(CloseImportConnectionRunStep importRunStep)
         {
-            if (this.importRunStepParameters.ImportType== OperationType.Delta)
+            if (this.importRunStepParameters.ImportType == OperationType.Full)
             {
                 // We just performed a full import so clear the queue
                 CSEntryChangeQueue.Clear();

@@ -516,11 +516,11 @@ namespace Lithnet.MetadirectoryServices
         /// <param name="attributeName">The name of the attribute</param>
         /// <param name="modificationType">The type of modification to apply to the attribute</param>
         /// <param name="values">The values to apply to the modification operation</param>
-        public static void CreateAttributeChangeIfInSchema<T>(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, IList<T> values)
+        public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, IList<object> values)
         {
-            if (type.HasAttribute(attributeName))
+            if (type.HasAttribute(attributeName) && values != null && values.Count > 0)
             {
-                csentry.CreateAttributeChange(attributeName, modificationType, values.Cast<object>().ToList());
+                csentry.CreateAttributeChange(attributeName, modificationType, values);
             }
         }
 
@@ -532,11 +532,24 @@ namespace Lithnet.MetadirectoryServices
         /// <param name="attributeName">The name of the attribute</param>
         /// <param name="modificationType">The type of modification to apply to the attribute</param>
         /// <param name="value">The value to apply to the modification operation</param>
-        public static void CreateAttributeChangeIfInSchema<T>(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, Nullable<T> value) where T : struct
+        public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, bool value)
         {
-            if (type.HasAttribute(attributeName))
+            csentry.CreateAttributeChangeIfInSchemaInternal(type, attributeName, modificationType, value);
+        }
+
+        /// <summary>
+        /// Creates an AttributeChange of the specified type, provided that the attribute is present in the provided schema type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="type">The schema type of the object class of the CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="value">The value to apply to the modification operation</param>
+        public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, bool? value)
+        {
+            if (value != null && value.HasValue)
             {
-                    csentry.CreateAttributeChange(attributeName, modificationType, value.Value);
+                csentry.CreateAttributeChangeIfInSchemaInternal(type, attributeName, modificationType, value);
             }
         }
 
@@ -548,23 +561,61 @@ namespace Lithnet.MetadirectoryServices
         /// <param name="attributeName">The name of the attribute</param>
         /// <param name="modificationType">The type of modification to apply to the attribute</param>
         /// <param name="value">The value to apply to the modification operation</param>
-        public static void CreateAttributeChangeIfInSchema<T>(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, T value)
+        public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, long value)
+        {
+            csentry.CreateAttributeChangeIfInSchemaInternal(type, attributeName, modificationType, value);
+        }
+
+        /// <summary>
+        /// Creates an AttributeChange of the specified type, provided that the attribute is present in the provided schema type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="type">The schema type of the object class of the CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="value">The value to apply to the modification operation</param>
+        public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, long? value)
+        {
+            if (value != null && value.HasValue)
+            {
+                csentry.CreateAttributeChangeIfInSchemaInternal(type, attributeName, modificationType, value);
+            }
+        }
+
+        /// <summary>
+        /// Creates an AttributeChange of the specified type, provided that the attribute is present in the provided schema type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="type">The schema type of the object class of the CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="value">The value to apply to the modification operation</param>
+        public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, string value)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                csentry.CreateAttributeChangeIfInSchemaInternal(type, attributeName, modificationType, value);
+            }
+        }
+
+        /// <summary>
+        /// Creates an AttributeChange of the specified type, provided that the attribute is present in the provided schema type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="type">The schema type of the object class of the CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="value">The value to apply to the modification operation</param>
+        public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, byte[] value)
+        {
+            csentry.CreateAttributeChangeIfInSchemaInternal(type, attributeName, modificationType, value);
+        }
+
+        private static void CreateAttributeChangeIfInSchemaInternal(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, object value)
         {
             if (type.HasAttribute(attributeName))
             {
-                if (value != null)
-                {
-                    string valueString = value as string;
-
-                    if (string.IsNullOrEmpty(valueString))
-                    {
-                        csentry.CreateAttributeChange(attributeName, modificationType, valueString);
-                    }
-                    else
-                    {
-                        csentry.CreateAttributeChange(attributeName, modificationType, value);
-                    }
-                }
+                csentry.CreateAttributeChange(attributeName, modificationType, value);
             }
         }
     }

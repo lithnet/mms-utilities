@@ -469,6 +469,7 @@ namespace Lithnet.MetadirectoryServices
         /// <param name="attributeName">The name of the attribute</param>
         /// <param name="modificationType">The type of modification to apply to the attribute</param>
         /// <param name="value">The value to apply to the modification operation</param>
+        /// <typeparam name="T">The type of data</typeparam>
         public static void CreateAttributeChange<T>(this CSEntryChange csentry, string attributeName, AttributeModificationType modificationType, Nullable<T> value) where T : struct
         {
             switch (modificationType)

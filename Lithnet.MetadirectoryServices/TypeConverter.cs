@@ -99,6 +99,27 @@
         }
 
         /// <summary>
+        /// Tries to convert the object to the specified attribute type
+        /// </summary>
+        /// <param name="obj">The object to convert</param>
+        /// <param name="type">The data type to convert the object to</param>
+        /// <param name="value">The converted value</param>
+        /// <returns>A value indicating if the conversion was successful</returns>
+        public static bool TryConvertData(object obj, ExtendedAttributeType type, out object value)
+        {
+            try
+            {
+                value = TypeConverter.ConvertData(obj, type);
+                return true;
+            }
+            catch
+            {
+                value = null;
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Returns the metadirectory services data type for a given object
         /// </summary>
         /// <param name="obj">The object to determine the data type for</param>
@@ -139,6 +160,50 @@
         }
 
         /// <summary>
+        /// Returns the extended data type for a given object
+        /// </summary>
+        /// <param name="obj">The object to determine the data type for</param>
+        /// <returns>A value of the <c ref="ExtendedAttributeType">AttributeType</c> enumeration</returns>
+        public static ExtendedAttributeType GetDataTypeExtended(object obj)
+        {
+            if (obj == null)
+            {
+                throw new ArgumentNullException("obj");
+            }
+
+            Type objectType = obj.GetType();
+
+            if (objectType == typeof(string))
+            {
+                return ExtendedAttributeType.String;
+            }
+            else if (objectType == typeof(int) || objectType == typeof(long))
+            {
+                return ExtendedAttributeType.Integer;
+            }
+            else if (objectType == typeof(bool))
+            {
+                return ExtendedAttributeType.Boolean;
+            }
+            else if (objectType == typeof(byte[]))
+            {
+                return ExtendedAttributeType.Binary;
+            }
+            else if (objectType == typeof(Guid))
+            {
+                return ExtendedAttributeType.Reference;
+            }
+            else if (objectType == typeof(DateTime))
+            {
+                return ExtendedAttributeType.DateTime;
+            }
+            else
+            {
+                throw new UnknownOrUnsupportedDataTypeException();
+            }
+        }
+
+        /// <summary>
         /// Converts the object to the specified attribute type
         /// </summary>
         /// <param name="obj">The object to convert</param>
@@ -166,6 +231,40 @@
                 case AttributeType.Undefined:
                 default:
                     throw new NotSupportedException("Unknown or unsupported data type");
+            }
+        }
+
+        /// <summary>
+        /// Converts the object to the specified attribute type
+        /// </summary>
+        /// <param name="obj">The object to convert</param>
+        /// <param name="type">The data type to convert the object to</param>
+        /// <returns>The converted value</returns>
+        public static object ConvertData(object obj, ExtendedAttributeType type)
+        {
+            switch (type)
+            {
+                case ExtendedAttributeType.Binary:
+                    return TypeConverter.ConvertToBinary(obj);
+
+                case ExtendedAttributeType.Boolean:
+                    return TypeConverter.ConvertToBoolean(obj);
+
+                case ExtendedAttributeType.Integer:
+                    return TypeConverter.ConvertToLong(obj);
+
+                case ExtendedAttributeType.Reference:
+                    return TypeConverter.ConvertToGuid(obj);
+
+                case ExtendedAttributeType.String:
+                    return TypeConverter.ConvertToString(obj);
+
+                case ExtendedAttributeType.DateTime:
+                    return TypeConverter.ConvertToDateTime(obj);
+
+                case ExtendedAttributeType.Undefined:
+                default:
+                    throw new UnknownOrUnsupportedDataTypeException();
             }
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Security;
 using System.Runtime.InteropServices;
+using Microsoft.MetadirectoryServices;
 
 namespace Lithnet.MetadirectoryServices
 {
@@ -16,7 +17,6 @@ namespace Lithnet.MetadirectoryServices
         /// A .NET custom format string that represents the ISO8601 date format that is used by the FIM Service
         /// </summary>
         public const string ResourceManagementServiceDateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff";
-
 
         /// <summary>
         /// A .NET custom format string that represents the ISO8601 date format that is used by the FIM Service, but has the milliseconds component set to '0'
@@ -259,7 +259,7 @@ namespace Lithnet.MetadirectoryServices
         /// </summary>
         /// <param name="obj">The string to truncate</param>
         /// <param name="totalLength">The length to truncate to</param>
-        /// <returns></returns>
+        /// <returns>A string shortened to the specified length</returns>
         public static string TruncateString(this string obj, int totalLength)
         {
             if (string.IsNullOrWhiteSpace(obj))
@@ -303,6 +303,73 @@ namespace Lithnet.MetadirectoryServices
         }
 
         /// <summary>
+        /// Converts an ExtendedAttributeType value to its equivalent MetadirectoryServices AttributeType
+        /// </summary>
+        /// <param name="type">The ExtendedAttributeType value</param>
+        /// <returns>An equivalent AttributeType value</returns>
+        public static AttributeType ToAttributeType(this ExtendedAttributeType type)
+        {
+            switch (type)
+            {
+                case ExtendedAttributeType.String:
+                    return AttributeType.String;
+
+                case ExtendedAttributeType.Integer:
+                    return AttributeType.Integer;
+
+                case ExtendedAttributeType.Reference:
+                    return AttributeType.Reference;
+
+                case ExtendedAttributeType.Binary:
+                    return AttributeType.Binary;
+
+                case ExtendedAttributeType.Boolean:
+                    return AttributeType.Boolean;
+
+                case ExtendedAttributeType.Undefined:
+                    return AttributeType.Undefined;
+
+                case ExtendedAttributeType.DateTime:
+                    return AttributeType.String;
+
+                default:
+                    throw new UnknownOrUnsupportedDataTypeException();
+            }
+        }
+
+        /// <summary>
+        /// Converts an AttributeType value to its equivalent ExtendedAttributeType value
+        /// </summary>
+        /// <param name="type">The AttributeType value</param>
+        /// <returns>An equivalent ExtendedAttributeType value</returns>
+        public static ExtendedAttributeType ToExtendedAttributeType(this AttributeType type)
+        {
+            switch (type)
+            {
+                case AttributeType.Binary:
+                    return ExtendedAttributeType.Binary;
+
+                case AttributeType.Boolean:
+                    return ExtendedAttributeType.Boolean;
+
+                case AttributeType.Integer:
+                    return ExtendedAttributeType.Integer;
+
+                case AttributeType.Reference:
+                    return ExtendedAttributeType.Reference;
+
+                case AttributeType.String:
+                    return ExtendedAttributeType.String;
+
+                case AttributeType.Undefined:
+                    return ExtendedAttributeType.Undefined;
+
+                default:
+                    throw new UnknownOrUnsupportedDataTypeException();
+            }
+        }
+
+        /// <summary>
         /// <para>Truncates a DateTime to a specified resolution.</para>
         /// <para>A convenient source for resolution is TimeSpan.TicksPerXXXX constants.</para>
         /// </summary>
@@ -312,6 +379,45 @@ namespace Lithnet.MetadirectoryServices
         public static DateTime Truncate(this DateTime date, long resolution)
         {
             return new DateTime(date.Ticks - (date.Ticks % resolution), date.Kind);
+        }
+
+        /// <summary>
+        /// Converts a ValueCollection to a generic list of objects
+        /// </summary>
+        /// <param name="values">The value collection object</param>
+        /// <returns>A generic list of objects</returns>
+        public static IList<object> ToList(this ValueCollection values)
+        {
+            List<object> list = new List<object>();
+
+            foreach (Value value in values.OfType<Value>())
+            {
+                switch (value.DataType)
+                {
+                    case AttributeType.Binary:
+                        list.Add(value.ToBinary());
+                        break;
+
+                    case AttributeType.Boolean:
+                        list.Add(value.ToBoolean());
+                        break;
+
+                    case AttributeType.Integer:
+                        list.Add(value.ToInteger());
+                        break;
+
+                    case AttributeType.String:
+                    case AttributeType.Reference:
+                        list.Add(value.ToString());
+                        break;
+
+                    case AttributeType.Undefined:
+                    default:
+                        throw new UnknownOrUnsupportedDataTypeException();
+                }
+            }
+
+            return list;
         }
     }
 }

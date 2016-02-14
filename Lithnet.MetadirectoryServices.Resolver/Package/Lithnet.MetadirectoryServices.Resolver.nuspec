@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Lithnet.MetadirectoryServices.Resolver</id>
+    <version>$version$</version>
+    <title>Lithnet Metadirectory Services Assembly Resolver</title>
+    <authors>ryan@lithiumblue.com</authors>
+    <licenseUrl>https://lithnetmsu.codeplex.com/license</licenseUrl>
+    <projectUrl>https://lithnetmsu.codeplex.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Lithnet Metadirectory Services Assembly Resolver package is a .NET library for FIM/MIM code projects that need to be able to locate and load Microsoftt.MetadirectoryServicesEx.dll outside of the synchronization engine process</description>
+    <tags>FIM FIM2010 FIM2010R2 MIM MIM2016</tags>
+  </metadata>
+  <files/>
+</package>

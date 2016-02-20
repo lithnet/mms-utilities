@@ -18,8 +18,6 @@ namespace Lithnet.MetadirectoryServices.Resolver
 
         private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
-            EventLog eventLog = new EventLog("Application");
-            eventLog.Source = "Lithnet.MetadirectoryServices.Resolver";
             Assembly resolvedAssembly = null;
 
             if (!args.Name.StartsWith("Microsoft.MetadirectoryServicesEx", StringComparison.InvariantCultureIgnoreCase))
@@ -28,7 +26,7 @@ namespace Lithnet.MetadirectoryServices.Resolver
             }
 
 #if DEBUG
-            eventLog.WriteEntry(string.Format("Lithnet.MetadirectoryServices.Resolver searching for: {0}", args.Name), EventLogEntryType.Information, 1);
+            WriteEventLogEntry(string.Format("Lithnet.MetadirectoryServices.Resolver searching for: {0}", args.Name), EventLogEntryType.Information, 1);
 #endif
 
             string path = GetMmsOverridePathFromRegistry();
@@ -62,7 +60,7 @@ namespace Lithnet.MetadirectoryServices.Resolver
             }
 
 #if DEBUG
-            eventLog.WriteEntry(string.Format("Lithnet.MetadirectoryServices.Resolver could not find Microsoft.MetadirectoryServicesEx.dll"), EventLogEntryType.Error, 3);
+            WriteEventLogEntry(string.Format("Lithnet.MetadirectoryServices.Resolver could not find Microsoft.MetadirectoryServicesEx.dll"), EventLogEntryType.Error, 3);
 #endif
 
             throw new FileNotFoundException(@"The Microsoft.MetadirectoryServicesEx.dll file could not be found on this system. Ensure the FIM synchronization service has been installed, or the DLL registered in the GAC");
@@ -70,9 +68,6 @@ namespace Lithnet.MetadirectoryServices.Resolver
 
         private static bool TryGetAssembly(string path, out Assembly mmsAssembly)
         {
-            EventLog eventLog = new EventLog("Application");
-            eventLog.Source = "Lithnet.MetadirectoryServices.Resolver";
-
             mmsAssembly = null;
 
             if (File.Exists(path))
@@ -82,7 +77,7 @@ namespace Lithnet.MetadirectoryServices.Resolver
                 if (mmsAssembly != null)
                 {
 #if DEBUG
-                    eventLog.WriteEntry(string.Format("Lithnet.MetadirectoryServices.Resolver found: {0}", mmsAssembly.FullName), EventLogEntryType.Information, 2);
+                    WriteEventLogEntry(string.Format("Lithnet.MetadirectoryServices.Resolver found: {0}", mmsAssembly.FullName), EventLogEntryType.Information, 2);
 #endif
                     return true;
                 }
@@ -137,6 +132,19 @@ namespace Lithnet.MetadirectoryServices.Resolver
             localPath = Path.Combine(localPath, "Microsoft.MetadirectoryServicesEx.dll");
 
             return localPath;
+        }
+
+        private static void WriteEventLogEntry(string message, EventLogEntryType type, int id)
+        {
+            try
+            {
+                EventLog eventLog = new EventLog("Application");
+                eventLog.Source = "Lithnet.MetadirectoryServices.Resolver";
+                eventLog.WriteEntry(message, type, id);
+            }
+            catch 
+            {
+            }
         }
     }
 }

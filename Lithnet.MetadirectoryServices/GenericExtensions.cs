@@ -30,26 +30,30 @@ namespace Lithnet.MetadirectoryServices
         /// <returns>An ISO 8601 date format string</returns>
         public static string ToResourceManagementServiceDateFormat(this DateTime dateTime)
         {
-            return GenericExtensions.ToResourceManagementServiceDateFormat(dateTime, false);
+            return GenericExtensions.ToResourceManagementServiceDateFormat(dateTime, false, false);
         }
 
         /// <summary>
         /// Converts a date time to the ISO 8601 date string required by the Resource Management Service
         /// </summary>
         /// <param name="dateTime">The date and time to convert</param>
+        /// <param name="convertToUtc">A value indicating that if the date does not have a Kind of UTC, it will be converted to UTC</param>
         /// <param name="zeroMilliseconds">A value indicating whether the millisecond component of the date should be zeroed to avoid rounding/round-trip issues</param>
         /// <returns>An ISO 8601 date format string</returns>
-        public static string ToResourceManagementServiceDateFormat(this DateTime dateTime, bool zeroMilliseconds)
+        public static string ToResourceManagementServiceDateFormat(this DateTime dateTime, bool convertToUtc, bool zeroMilliseconds)
         {
-            DateTime convertedDateTime = dateTime.ToUniversalTime();
-
+            if (convertToUtc)
+            {
+                dateTime = dateTime.ToUniversalTime();
+            }
+            
             if (zeroMilliseconds)
             {
-                return convertedDateTime.ToString(GenericExtensions.ResourceManagementServiceDateFormatZeroedMilliseconds);
+                return dateTime.ToString(GenericExtensions.ResourceManagementServiceDateFormatZeroedMilliseconds);
             }
             else
             {
-                return convertedDateTime.ToString(GenericExtensions.ResourceManagementServiceDateFormat);
+                return dateTime.ToString(GenericExtensions.ResourceManagementServiceDateFormat);
 
             }
         }

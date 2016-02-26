@@ -134,6 +134,41 @@ namespace Lithnet.MetadirectoryServices.Resolver
             return localPath;
         }
 
+        public static string FindMmsPath()
+        {
+            string path = GetMmsOverridePathFromRegistry();
+
+            if (path != null)
+            {
+                if (System.IO.File.Exists(path))
+                {
+                    return path;
+                }
+            }
+
+            path = GetMmsPathFromRegistry();
+
+            if (path != null)
+            {
+                if (System.IO.File.Exists(path))
+                {
+                    return path;
+                }
+            }
+
+            path = GetMmsPathFromEntryAssemblyFolder();
+
+            if (path != null)
+            {
+                if (System.IO.File.Exists(path))
+                {
+                    return path;
+                }
+            }
+
+            throw new FileNotFoundException("Could not locate the Microsoft.MetadirectoryServicesEx.dll file on this system. Please copy it from the FIM Sync Server and place it in the same folder as this application");
+        }
+
         private static void WriteEventLogEntry(string message, EventLogEntryType type, int id)
         {
             try

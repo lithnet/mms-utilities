@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
@@ -51,6 +52,11 @@
     <Compile Include="CSEntryChangeExtensions.cs" />
     <Compile Include="CSEntryChangeQueue.cs" />
     <Compile Include="CSEntryChangeSerializer.cs" />
+    <Compile Include="DataContractSurrogates\AnchorAttributeSerializable.cs" />
+    <Compile Include="DataContractSurrogates\CSEntryChangeSerializable.cs" />
+    <Compile Include="DataContractSurrogates\MmsSerializationSurrogate.cs" />
+    <Compile Include="DataContractSurrogates\AttributeChangeSerializable.cs" />
+    <Compile Include="DataContractSurrogates\ValueChangeSerializable.cs" />
     <Compile Include="Enums\ExtendedAttributeType.cs" />
     <Compile Include="Enums\PresenceOperator.cs" />
     <Compile Include="Enums\ValueOperator.cs" />

@@ -52,6 +52,9 @@
     <Compile Include="CSEntryChangeExtensions.cs" />
     <Compile Include="CSEntryChangeQueue.cs" />
     <Compile Include="CSEntryChangeSerializer.cs" />
+    <Compile Include="DataContractSurrogates\SchemaSerializable.cs" />
+    <Compile Include="DataContractSurrogates\SchemaTypeSerializable.cs" />
+    <Compile Include="DataContractSurrogates\SchemaAttributeSerializable.cs" />
     <Compile Include="DataContractSurrogates\AnchorAttributeSerializable.cs" />
     <Compile Include="DataContractSurrogates\CSEntryChangeSerializable.cs" />
     <Compile Include="DataContractSurrogates\MmsSerializationSurrogate.cs" />

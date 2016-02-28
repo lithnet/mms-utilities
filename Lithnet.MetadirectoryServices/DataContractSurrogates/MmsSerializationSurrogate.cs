@@ -37,6 +37,18 @@ namespace Lithnet.MetadirectoryServices
             {
                 return typeof(AnchorAttributeSerializable);
             }
+            else if (typeof(SchemaAttribute).IsAssignableFrom(type))
+            {
+                return typeof(SchemaAttributeSerializable);
+            }
+            else if (typeof(SchemaType).IsAssignableFrom(type))
+            {
+                return typeof(SchemaTypeSerializable);
+            }
+            else if (typeof(Schema).IsAssignableFrom(type))
+            {
+                return typeof(SchemaSerializable);
+            }
 
             return type;
         }
@@ -69,6 +81,27 @@ namespace Lithnet.MetadirectoryServices
             if (anchor != null)
             {
                 return anchor.GetObject();
+            }
+
+            SchemaAttributeSerializable schemaAttribute = obj as SchemaAttributeSerializable;
+
+            if (schemaAttribute != null)
+            {
+                return schemaAttribute.GetObject();
+            }
+
+            SchemaTypeSerializable schemaType = obj as SchemaTypeSerializable;
+
+            if (schemaType != null)
+            {
+                return schemaType.GetObject();
+            }
+
+            SchemaSerializable schema = obj as SchemaSerializable;
+
+            if (schema != null)
+            {
+                return schema.GetObject();
             }
 
             return obj;
@@ -107,7 +140,28 @@ namespace Lithnet.MetadirectoryServices
             {
                 return new AnchorAttributeSerializable(anchor);
             }
-                
+
+            SchemaAttribute schemaAttribute = obj as SchemaAttribute;
+
+            if (schemaAttribute != null)
+            {
+                return new SchemaAttributeSerializable(schemaAttribute);
+            }
+
+            SchemaType schemaType = obj as SchemaType;
+
+            if (schemaType != null)
+            {
+                return new SchemaTypeSerializable(schemaType);
+            }
+
+            Schema schema = obj as Schema;
+
+            if (schema != null)
+            {
+                return new SchemaSerializable(schema);
+            }
+
             return obj;
         }
 
@@ -128,6 +182,18 @@ namespace Lithnet.MetadirectoryServices
             else if (typeName.Equals("AnchorAttributeSerializable"))
             {
                 return typeof(AnchorAttribute);
+            }
+            else if (typeName.Equals("SchemaAttributeSerializable"))
+            {
+                return typeof(SchemaAttribute);
+            }
+            else if (typeName.Equals("SchemaTypeSerializable"))
+            {
+                return typeof(SchemaType);
+            }
+            else if (typeName.Equals("SchemaSerializable"))
+            {
+                return typeof(Schema);
             }
 
             return null;

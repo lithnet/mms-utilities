@@ -619,5 +619,36 @@ namespace Lithnet.MetadirectoryServices
                 csentry.CreateAttributeChange(attributeName, modificationType, value);
             }
         }
+
+        public static string ToDetailString(this CSEntryChange csentry)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("CSEntryChange: " + csentry.Identifier.ToString());
+            sb.AppendLine("DN: " + csentry.DN);
+            sb.AppendLine("Object class: " + csentry.ObjectType);
+            sb.AppendLine("Object modification type: " + csentry.ObjectModificationType.ToString());
+            sb.AppendLine("Import error code: " + csentry.ErrorCodeImport.ToString());
+            sb.AppendLine("Error name: " + csentry.ErrorName);
+            sb.AppendLine("Error detail: " + csentry.ErrorDetail);
+
+            sb.AppendLine("Anchor Attributes");
+            foreach (var anchorAttribute in csentry.AnchorAttributes)
+            {
+                sb.AppendFormat("  Attribute: {0}, Modification type: {1}, Value: {2}\n", anchorAttribute.Name, anchorAttribute.DataType.ToString(), anchorAttribute.Value.ToSmartString());
+            }
+
+            sb.AppendLine("Attribute Changes");
+            foreach (var attributeChange in csentry.AttributeChanges)
+            {
+                sb.AppendFormat("  Attribute: {0}, Type: {1}, Multivalued: {2}, Modification Type: {3}\n", attributeChange.Name, attributeChange.DataType.ToString(), attributeChange.IsMultiValued.ToString(), attributeChange.ModificationType.ToString());
+                foreach (var valueChange in attributeChange.ValueChanges)
+                {
+                    sb.AppendFormat("      {0}: {1}\n", valueChange.ModificationType.ToString(), valueChange.Value.ToSmartString());
+                }
+            }
+
+            return sb.ToString();
+        }
     }
 }

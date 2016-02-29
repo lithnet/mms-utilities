@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
@@ -59,6 +60,7 @@
     <Compile Include="DataContractSurrogates\CSEntryChangeSerializable.cs" />
     <Compile Include="DataContractSurrogates\MmsSerializationSurrogate.cs" />
     <Compile Include="DataContractSurrogates\AttributeChangeSerializable.cs" />
+    <Compile Include="DataContractSurrogates\CSEntryChangeResultSerializable.cs" />
     <Compile Include="DataContractSurrogates\ValueChangeSerializable.cs" />
     <Compile Include="Enums\ExtendedAttributeType.cs" />
     <Compile Include="Enums\PresenceOperator.cs" />
@@ -73,7 +75,11 @@
     <Compile Include="TypeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Package\Lithnet.MetadirectoryServices.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

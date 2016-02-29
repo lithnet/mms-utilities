@@ -15,7 +15,7 @@ namespace Lithnet.MetadirectoryServices
         public object Value { get; set; }
 
         [DataMember]
-        ValueModificationType ModificationType { get; set; }
+        public ValueModificationType ModificationType { get; set; }
 
         internal ValueChangeSerializable(ValueChange change)
         {

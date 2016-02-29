@@ -11,7 +11,6 @@ using Microsoft.MetadirectoryServices.DetachedObjectModel;
 namespace Lithnet.MetadirectoryServices
 {
     [DataContract]
-
     public class CSEntryChangeSerializable
     {
         internal CSEntryChangeSerializable(CSEntryChange csentry)

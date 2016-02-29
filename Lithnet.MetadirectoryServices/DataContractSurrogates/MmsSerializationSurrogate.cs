@@ -49,6 +49,10 @@ namespace Lithnet.MetadirectoryServices
             {
                 return typeof(SchemaSerializable);
             }
+            else if (typeof(CSEntryChangeResult).IsAssignableFrom(type))
+            {
+                return typeof(CSEntryChangeResultSerializable);
+            }
 
             return type;
         }
@@ -74,6 +78,13 @@ namespace Lithnet.MetadirectoryServices
             if (csentry != null)
             {
                 return csentry.GetObject();
+            }
+
+            CSEntryChangeResultSerializable csentryresult = obj as CSEntryChangeResultSerializable;
+
+            if (csentryresult != null)
+            {
+                return csentryresult.GetObject();
             }
 
             AnchorAttributeSerializable anchor = obj as AnchorAttributeSerializable;
@@ -132,6 +143,13 @@ namespace Lithnet.MetadirectoryServices
             if (csentry != null)
             {
                 return new CSEntryChangeSerializable(csentry);
+            }
+
+            CSEntryChangeResult csentryresult = obj as CSEntryChangeResult;
+
+            if (csentryresult != null)
+            {
+                return new CSEntryChangeResultSerializable(csentryresult);
             }
 
             AnchorAttribute anchor = obj as AnchorAttribute;
@@ -195,7 +213,10 @@ namespace Lithnet.MetadirectoryServices
             {
                 return typeof(Schema);
             }
-
+            else if (typeName.Equals("CSEntryChangeResultSerializable"))
+            {
+                return typeof(CSEntryChangeResult);
+            }
             return null;
         }
 

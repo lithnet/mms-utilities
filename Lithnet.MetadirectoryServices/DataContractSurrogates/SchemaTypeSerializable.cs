@@ -13,9 +13,6 @@ namespace Lithnet.MetadirectoryServices
     public class SchemaTypeSerializable
     {
         [DataMember]
-        public IList<SchemaAttribute> AnchorAttributes { get; set; }
-
-        [DataMember]
         public string Name { get; set; }
 
         [DataMember]
@@ -31,7 +28,6 @@ namespace Lithnet.MetadirectoryServices
 
         internal void SetObject(SchemaType type)
         {
-            this.AnchorAttributes = type.AnchorAttributes;
             this.Attributes = type.Attributes;
             this.Locked = type.Locked;
             this.Name = type.Name;
@@ -40,14 +36,6 @@ namespace Lithnet.MetadirectoryServices
         internal SchemaType GetObject()
         {
             SchemaType t = SchemaType.Create(this.Name, this.Locked);
-
-            if (this.AnchorAttributes != null)
-            {
-                foreach (SchemaAttribute a in this.AnchorAttributes)
-                {
-                    t.AnchorAttributes.Add(a);
-                }
-            }
 
             if (this.Attributes != null)
             {

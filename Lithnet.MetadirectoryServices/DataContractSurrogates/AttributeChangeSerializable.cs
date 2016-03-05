@@ -25,7 +25,7 @@ namespace Lithnet.MetadirectoryServices
         public string Name { get; set; }
 
         [DataMember]
-        public IList<ValueChange> ValueChanges { get; private set; }
+        public List<ValueChange> ValueChanges { get; private set; }
 
         internal AttributeChangeSerializable(AttributeChange change)
         {
@@ -38,7 +38,7 @@ namespace Lithnet.MetadirectoryServices
             this.IsMultiValued = change.IsMultiValued;
             this.ModificationType = change.ModificationType;
             this.Name = change.Name;
-            this.ValueChanges = change.ValueChanges;
+            this.ValueChanges = change.ValueChanges.ToList();
         }
 
         internal AttributeChange GetObject()

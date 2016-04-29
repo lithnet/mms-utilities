@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="Add method" Url="html/F1EB2A51.htm" />
+  <HelpKINode Title="AllowedBinaryOperators property" Url="html/1A43FCDC.htm" />
+  <HelpKINode Title="AllowedBooleanOperators property" Url="html/23964B9B.htm" />
+  <HelpKINode Title="AllowedDateTimeOperators property" Url="html/643C066A.htm" />
+  <HelpKINode Title="AllowedIntegerOperators property" Url="html/92FA964C.htm" />
+  <HelpKINode Title="AllowedPresenceOperators property" Url="html/8AF96C78.htm" />
+  <HelpKINode Title="AllowedReferenceOperators property" Url="html/7FF0CFDA.htm" />
+  <HelpKINode Title="AllowedStringOperators property" Url="html/7641318A.htm" />
+  <HelpKINode Title="AnchorAttributes property" Url="html/C6355217.htm" />
+  <HelpKINode Title="And enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="AppendWithCommaSeparator method" Url="html/62ADB059.htm" />
+  <HelpKINode Title="AppendWithSeparator method" Url="html/1E3379AC.htm" />
+  <HelpKINode Title="AttributeChangeExtentions class">
+    <HelpKINode Title="AttributeChangeExtentions Class" Url="html/D70B2681.htm" />
+    <HelpKINode Title="about AttributeChangeExtentions class" Url="html/D70B2681.htm" />
+    <HelpKINode Title="methods" Url="html/85B609F5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AttributeChangeExtentions.GetValueAdd(Of T) method" Url="html/3DC4B98D.htm" />
+  <HelpKINode Title="AttributeChangeExtentions.GetValueAdd&lt;T&gt; method" Url="html/3DC4B98D.htm" />
+  <HelpKINode Title="AttributeChangeExtentions.GetValueAdds(Of T) method" Url="html/430C3E65.htm" />
+  <HelpKINode Title="AttributeChangeExtentions.GetValueAdds&lt;T&gt; method" Url="html/430C3E65.htm" />
+  <HelpKINode Title="AttributeChangeExtentions.GetValueChanges(Of T) method" Url="html/E7318B20.htm" />
+  <HelpKINode Title="AttributeChangeExtentions.GetValueChanges&lt;T&gt; method" Url="html/E7318B20.htm" />
+  <HelpKINode Title="AttributeChangeExtentions.GetValueDeletes(Of T) method" Url="html/4AD22971.htm" />
+  <HelpKINode Title="AttributeChangeExtentions.GetValueDeletes&lt;T&gt; method" Url="html/4AD22971.htm" />
+  <HelpKINode Title="AttributeChanges property" Url="html/A8D55DE1.htm" />
+  <HelpKINode Title="AttributeChangeSerializable class">
+    <HelpKINode Title="AttributeChangeSerializable Class" Url="html/A2E22820.htm" />
+    <HelpKINode Title="about AttributeChangeSerializable class" Url="html/A2E22820.htm" />
+    <HelpKINode Title="methods" Url="html/8976B834.htm" />
+    <HelpKINode Title="properties" Url="html/569AB3DF.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AttributeChangeSerializable.DataType property" Url="html/9E1BCA95.htm" />
+  <HelpKINode Title="AttributeChangeSerializable.IsMultiValued property" Url="html/26D6B470.htm" />
+  <HelpKINode Title="AttributeChangeSerializable.ModificationType property" Url="html/D430F004.htm" />
+  <HelpKINode Title="AttributeChangeSerializable.Name property" Url="html/F17717B7.htm" />
+  <HelpKINode Title="AttributeChangeSerializable.ValueChanges property" Url="html/A7547585.htm" />
+  <HelpKINode Title="Binary enumeration member" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="Boolean enumeration member" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="Clear method" Url="html/8B5A4A0F.htm" />
+  <HelpKINode Title="Compare method" Url="html/ACB060B.htm" />
+  <HelpKINode Title="CompareBinary method" Url="html/5DE41870.htm" />
+  <HelpKINode Title="CompareBoolean method" Url="html/B5B27503.htm" />
+  <HelpKINode Title="CompareDateTime method" Url="html/961245B.htm" />
+  <HelpKINode Title="CompareLong method" Url="html/1388A60D.htm" />
+  <HelpKINode Title="CompareString method" Url="html/FB62BFC7.htm" />
+  <HelpKINode Title="ComparisonEngine class">
+    <HelpKINode Title="ComparisonEngine Class" Url="html/27F95AC1.htm" />
+    <HelpKINode Title="about ComparisonEngine class" Url="html/27F95AC1.htm" />
+    <HelpKINode Title="methods" Url="html/8C93D5EE.htm" />
+    <HelpKINode Title="properties" Url="html/19EE82EC.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ComparisonEngine.AllowedBinaryOperators property" Url="html/1A43FCDC.htm" />
+  <HelpKINode Title="ComparisonEngine.AllowedBooleanOperators property" Url="html/23964B9B.htm" />
+  <HelpKINode Title="ComparisonEngine.AllowedDateTimeOperators property" Url="html/643C066A.htm" />
+  <HelpKINode Title="ComparisonEngine.AllowedIntegerOperators property" Url="html/92FA964C.htm" />
+  <HelpKINode Title="ComparisonEngine.AllowedPresenceOperators property" Url="html/8AF96C78.htm" />
+  <HelpKINode Title="ComparisonEngine.AllowedReferenceOperators property" Url="html/7FF0CFDA.htm" />
+  <HelpKINode Title="ComparisonEngine.AllowedStringOperators property" Url="html/7641318A.htm" />
+  <HelpKINode Title="ComparisonEngine.Compare method" Url="html/ACB060B.htm" />
+  <HelpKINode Title="ComparisonEngine.CompareBinary method" Url="html/5DE41870.htm" />
+  <HelpKINode Title="ComparisonEngine.CompareBoolean method" Url="html/B5B27503.htm" />
+  <HelpKINode Title="ComparisonEngine.CompareDateTime method" Url="html/961245B.htm" />
+  <HelpKINode Title="ComparisonEngine.CompareLong method" Url="html/1388A60D.htm" />
+  <HelpKINode Title="ComparisonEngine.CompareString method" Url="html/FB62BFC7.htm" />
+  <HelpKINode Title="ComparisonEngine.GetAllowedValueOperators method" Url="html/9141137F.htm" />
+  <HelpKINode Title="ComparisonEngine.IsAllowedBinaryOperator method" Url="html/F8C20121.htm" />
+  <HelpKINode Title="ComparisonEngine.IsAllowedBooleanOperator method" Url="html/FE32EE6E.htm" />
+  <HelpKINode Title="ComparisonEngine.IsAllowedDateTimeOperator method" Url="html/1E2C9267.htm" />
+  <HelpKINode Title="ComparisonEngine.IsAllowedIntegerOperator method" Url="html/B04C0637.htm" />
+  <HelpKINode Title="ComparisonEngine.IsAllowedOperator method" Url="html/62A45350.htm" />
+  <HelpKINode Title="ComparisonEngine.IsAllowedPresenceOperator method" Url="html/FED526D.htm" />
+  <HelpKINode Title="ComparisonEngine.IsAllowedReferenceOperator method" Url="html/12A8B51D.htm" />
+  <HelpKINode Title="ComparisonEngine.IsAllowedStringOperator method" Url="html/857175C.htm" />
+  <HelpKINode Title="Contains enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="ContainsSameElements(Of T) method" Url="html/669444E2.htm" />
+  <HelpKINode Title="ContainsSameElements&lt;T&gt; method" Url="html/669444E2.htm" />
+  <HelpKINode Title="ConvertData method" Url="html/75591B18.htm" />
+  <HelpKINode Title="ConvertToUnsecureString method" Url="html/F9CF11E8.htm" />
+  <HelpKINode Title="Count property" Url="html/851A2BA4.htm" />
+  <HelpKINode Title="CreateAttributeAdd method" Url="html/A5D6371D.htm" />
+  <HelpKINode Title="CreateAttributeChange method" Url="html/497537C0.htm" />
+  <HelpKINode Title="CreateAttributeChangeIfInSchema method" Url="html/6BCB0CCA.htm" />
+  <HelpKINode Title="CreateAttributeDelete method" Url="html/A6E32D56.htm" />
+  <HelpKINode Title="CreateAttributeReplace method" Url="html/15129356.htm" />
+  <HelpKINode Title="CreateAttributeUpdate method" Url="html/BB6D7BC6.htm" />
+  <HelpKINode Title="CSEntryChangeDeserializer class">
+    <HelpKINode Title="CSEntryChangeDeserializer Class" Url="html/E59F7C1D.htm" />
+    <HelpKINode Title="about CSEntryChangeDeserializer class" Url="html/E59F7C1D.htm" />
+    <HelpKINode Title="methods" Url="html/2B555C23.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CSEntryChangeDeserializer.Deserialize method" Url="html/41F02691.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions class">
+    <HelpKINode Title="CSEntryChangeExtensions Class" Url="html/A901C645.htm" />
+    <HelpKINode Title="about CSEntryChangeExtensions class" Url="html/A901C645.htm" />
+    <HelpKINode Title="methods" Url="html/9D23AA5A.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CSEntryChangeExtensions.CreateAttributeAdd method" Url="html/A5D6371D.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.CreateAttributeChange method" Url="html/497537C0.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.CreateAttributeChangeIfInSchema method" Url="html/6BCB0CCA.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.CreateAttributeDelete method" Url="html/A6E32D56.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.CreateAttributeReplace method" Url="html/15129356.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.CreateAttributeUpdate method" Url="html/BB6D7BC6.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetAnchorAttribute method" Url="html/B81A85CD.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetAnchorValueOrDefault(Of T) method" Url="html/5AEE2E4E.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetAnchorValueOrDefault&lt;T&gt; method" Url="html/5AEE2E4E.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetNewDNOrDefault(Of T) method" Url="html/DD1570E0.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetNewDNOrDefault&lt;T&gt; method" Url="html/DD1570E0.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetValueAdd(Of T) method" Url="html/FE3BCD29.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetValueAdd&lt;T&gt; method" Url="html/FE3BCD29.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetValueAdds(Of T) method" Url="html/D9607C87.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetValueAdds&lt;T&gt; method" Url="html/D9607C87.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetValueChanges(Of T) method" Url="html/56E93754.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetValueChanges&lt;T&gt; method" Url="html/56E93754.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetValueDeletes(Of T) method" Url="html/3935A599.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.GetValueDeletes&lt;T&gt; method" Url="html/3935A599.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.HasAttributeChange method" Url="html/83A68AB6.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.ToValueChange(Of T) method" Url="html/3CC4F0B8.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.ToValueChange&lt;T&gt; method" Url="html/3CC4F0B8.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.ToValueChangeAdd(Of T) method" Url="html/B73A9930.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.ToValueChangeAdd&lt;T&gt; method" Url="html/B73A9930.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.ToValueChangeDelete(Of T) method" Url="html/32C39DD4.htm" />
+  <HelpKINode Title="CSEntryChangeExtensions.ToValueChangeDelete&lt;T&gt; method" Url="html/32C39DD4.htm" />
+  <HelpKINode Title="CSEntryChangeQueue class">
+    <HelpKINode Title="CSEntryChangeQueue Class" Url="html/C0CF58A4.htm" />
+    <HelpKINode Title="about CSEntryChangeQueue class" Url="html/C0CF58A4.htm" />
+    <HelpKINode Title="methods" Url="html/AE3234E9.htm" />
+    <HelpKINode Title="properties" Url="html/445FF9F6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CSEntryChangeQueue.Add method" Url="html/F1EB2A51.htm" />
+  <HelpKINode Title="CSEntryChangeQueue.Clear method" Url="html/8B5A4A0F.htm" />
+  <HelpKINode Title="CSEntryChangeQueue.Count property" Url="html/851A2BA4.htm" />
+  <HelpKINode Title="CSEntryChangeQueue.LoadQueue method" Url="html/D4F4C29.htm" />
+  <HelpKINode Title="CSEntryChangeQueue.SaveQueue method" Url="html/47E7DF5C.htm" />
+  <HelpKINode Title="CSEntryChangeQueue.Take method" Url="html/8D377A6.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable class">
+    <HelpKINode Title="CSEntryChangeSerializable Class" Url="html/FBF228F4.htm" />
+    <HelpKINode Title="about CSEntryChangeSerializable class" Url="html/FBF228F4.htm" />
+    <HelpKINode Title="methods" Url="html/EB755AEC.htm" />
+    <HelpKINode Title="properties" Url="html/EF811BCF.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CSEntryChangeSerializable.AnchorAttributes property" Url="html/C6355217.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.AttributeChanges property" Url="html/A8D55DE1.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.DN property" Url="html/A7FD5F71.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.ErrorCodeImport property" Url="html/132CA6A0.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.ErrorDetail property" Url="html/C5A5B3B6.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.ErrorName property" Url="html/588504A4.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.Identifier property" Url="html/595D53E8.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.ObjectModificationType property" Url="html/C8D60638.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.ObjectType property" Url="html/731E0C4F.htm" />
+  <HelpKINode Title="CSEntryChangeSerializable.RDN property" Url="html/3E221B13.htm" />
+  <HelpKINode Title="CSEntryChangeSerializer class">
+    <HelpKINode Title="CSEntryChangeSerializer Class" Url="html/A9BC09B7.htm" />
+    <HelpKINode Title="about CSEntryChangeSerializer class" Url="html/A9BC09B7.htm" />
+    <HelpKINode Title="methods" Url="html/760A3C5E.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CSEntryChangeSerializer.Serialize method" Url="html/E0EFBC5C.htm" />
+  <HelpKINode Title="DataType property" Url="html/9E1BCA95.htm" />
+  <HelpKINode Title="DateTime enumeration member" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="Deserialize method" Url="html/41F02691.htm" />
+  <HelpKINode Title="DN property" Url="html/A7FD5F71.htm" />
+  <HelpKINode Title="EndsWith enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="Equals enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="ErrorCodeImport property" Url="html/132CA6A0.htm" />
+  <HelpKINode Title="ErrorDetail property" Url="html/C5A5B3B6.htm" />
+  <HelpKINode Title="ErrorName property" Url="html/588504A4.htm" />
+  <HelpKINode Title="ExtendedAttributeType enumeration" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="First enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="GenericExtensions class">
+    <HelpKINode Title="GenericExtensions Class" Url="html/F2AE45D5.htm" />
+    <HelpKINode Title="about GenericExtensions class" Url="html/F2AE45D5.htm" />
+    <HelpKINode Title="fields" Url="html/2FF2B61E.htm" />
+    <HelpKINode Title="methods" Url="html/A3211CFF.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GenericExtensions.AppendWithCommaSeparator method" Url="html/62ADB059.htm" />
+  <HelpKINode Title="GenericExtensions.AppendWithSeparator method" Url="html/1E3379AC.htm" />
+  <HelpKINode Title="GenericExtensions.ContainsSameElements(Of T) method" Url="html/669444E2.htm" />
+  <HelpKINode Title="GenericExtensions.ContainsSameElements&lt;T&gt; method" Url="html/669444E2.htm" />
+  <HelpKINode Title="GenericExtensions.ConvertToUnsecureString method" Url="html/F9CF11E8.htm" />
+  <HelpKINode Title="GenericExtensions.ResourceManagementServiceDateFormat field" Url="html/ACE2903A.htm" />
+  <HelpKINode Title="GenericExtensions.ResourceManagementServiceDateFormatZeroedMilliseconds field" Url="html/124129D2.htm" />
+  <HelpKINode Title="GenericExtensions.ToAttributeType method" Url="html/B2E1BA7A.htm" />
+  <HelpKINode Title="GenericExtensions.ToCommaSeparatedString method" Url="html/914BC32D.htm" />
+  <HelpKINode Title="GenericExtensions.ToExtendedAttributeType method" Url="html/182ADBB6.htm" />
+  <HelpKINode Title="GenericExtensions.ToList method" Url="html/82F2A85D.htm" />
+  <HelpKINode Title="GenericExtensions.ToNewLineSeparatedString method" Url="html/C23DCCF8.htm" />
+  <HelpKINode Title="GenericExtensions.ToResourceManagementServiceDateFormat method" Url="html/ECBAE21C.htm" />
+  <HelpKINode Title="GenericExtensions.ToSeparatedString method" Url="html/F8F79A52.htm" />
+  <HelpKINode Title="GenericExtensions.ToSmartString method" Url="html/27205053.htm" />
+  <HelpKINode Title="GenericExtensions.ToSmartStringOrEmptyString method" Url="html/CC666B50.htm" />
+  <HelpKINode Title="GenericExtensions.ToSmartStringOrNull method" Url="html/9E32E726.htm" />
+  <HelpKINode Title="GenericExtensions.Truncate method" Url="html/DB19A444.htm" />
+  <HelpKINode Title="GenericExtensions.TruncateString method" Url="html/A5065D51.htm" />
+  <HelpKINode Title="GetAllowedValueOperators method" Url="html/9141137F.htm" />
+  <HelpKINode Title="GetAnchorAttribute method" Url="html/B81A85CD.htm" />
+  <HelpKINode Title="GetAnchorValueOrDefault(Of T) method" Url="html/5AEE2E4E.htm" />
+  <HelpKINode Title="GetAnchorValueOrDefault&lt;T&gt; method" Url="html/5AEE2E4E.htm" />
+  <HelpKINode Title="GetCustomDataToExport method" Url="html/E0E51951.htm" />
+  <HelpKINode Title="GetDataContractType method" Url="html/2DA1064F.htm" />
+  <HelpKINode Title="GetDataType method" Url="html/3B9F240E.htm" />
+  <HelpKINode Title="GetDataTypeExtended method" Url="html/3BC2D6AE.htm" />
+  <HelpKINode Title="GetDeserializedObject method" Url="html/1F718A69.htm" />
+  <HelpKINode Title="GetKnownCustomDataTypes method" Url="html/85343EE4.htm" />
+  <HelpKINode Title="GetNewDNOrDefault(Of T) method" Url="html/DD1570E0.htm" />
+  <HelpKINode Title="GetNewDNOrDefault&lt;T&gt; method" Url="html/DD1570E0.htm" />
+  <HelpKINode Title="GetObjectToSerialize method" Url="html/BE6923AB.htm" />
+  <HelpKINode Title="GetReferencedTypeOnImport method" Url="html/7377A1BB.htm" />
+  <HelpKINode Title="GetValueAdd(Of T) method">
+    <HelpKINode Title="AttributeChangeExtentions.GetValueAdd(T) Method " Url="html/3DC4B98D.htm" />
+    <HelpKINode Title="CSEntryChangeExtensions.GetValueAdd(T) Method " Url="html/FE3BCD29.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetValueAdd&lt;T&gt; method">
+    <HelpKINode Title="AttributeChangeExtentions.GetValueAdd(T) Method " Url="html/3DC4B98D.htm" />
+    <HelpKINode Title="CSEntryChangeExtensions.GetValueAdd(T) Method " Url="html/FE3BCD29.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetValueAdds(Of T) method">
+    <HelpKINode Title="AttributeChangeExtentions.GetValueAdds(T) Method " Url="html/430C3E65.htm" />
+    <HelpKINode Title="CSEntryChangeExtensions.GetValueAdds(T) Method " Url="html/D9607C87.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetValueAdds&lt;T&gt; method">
+    <HelpKINode Title="AttributeChangeExtentions.GetValueAdds(T) Method " Url="html/430C3E65.htm" />
+    <HelpKINode Title="CSEntryChangeExtensions.GetValueAdds(T) Method " Url="html/D9607C87.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetValueChanges(Of T) method">
+    <HelpKINode Title="AttributeChangeExtentions.GetValueChanges(T) Method " Url="html/E7318B20.htm" />
+    <HelpKINode Title="CSEntryChangeExtensions.GetValueChanges(T) Method " Url="html/56E93754.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetValueChanges&lt;T&gt; method">
+    <HelpKINode Title="AttributeChangeExtentions.GetValueChanges(T) Method " Url="html/E7318B20.htm" />
+    <HelpKINode Title="CSEntryChangeExtensions.GetValueChanges(T) Method " Url="html/56E93754.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetValueDeletes(Of T) method">
+    <HelpKINode Title="AttributeChangeExtentions.GetValueDeletes(T) Method " Url="html/4AD22971.htm" />
+    <HelpKINode Title="CSEntryChangeExtensions.GetValueDeletes(T) Method " Url="html/3935A599.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetValueDeletes&lt;T&gt; method">
+    <HelpKINode Title="AttributeChangeExtentions.GetValueDeletes(T) Method " Url="html/4AD22971.htm" />
+    <HelpKINode Title="CSEntryChangeExtensions.GetValueDeletes(T) Method " Url="html/3935A599.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GreaterThan enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="GreaterThanOrEq enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="HasAttribute method" Url="html/9B59A4D0.htm" />
+  <HelpKINode Title="HasAttributeChange method" Url="html/83A68AB6.htm" />
+  <HelpKINode Title="HasObjectClass method" Url="html/7CD0B1B9.htm" />
+  <HelpKINode Title="Identifier property" Url="html/595D53E8.htm" />
+  <HelpKINode Title="Integer enumeration member" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="IsAllowedBinaryOperator method" Url="html/F8C20121.htm" />
+  <HelpKINode Title="IsAllowedBooleanOperator method" Url="html/FE32EE6E.htm" />
+  <HelpKINode Title="IsAllowedDateTimeOperator method" Url="html/1E2C9267.htm" />
+  <HelpKINode Title="IsAllowedIntegerOperator method" Url="html/B04C0637.htm" />
+  <HelpKINode Title="IsAllowedOperator method" Url="html/62A45350.htm" />
+  <HelpKINode Title="IsAllowedPresenceOperator method" Url="html/FED526D.htm" />
+  <HelpKINode Title="IsAllowedReferenceOperator method" Url="html/12A8B51D.htm" />
+  <HelpKINode Title="IsAllowedStringOperator method" Url="html/857175C.htm" />
+  <HelpKINode Title="IsMultiValued property" Url="html/26D6B470.htm" />
+  <HelpKINode Title="IsPresent enumeration member">
+    <HelpKINode Title="PresenceOperator Enumeration" Url="html/6ADBA33E.htm" />
+    <HelpKINode Title="ValueOperator Enumeration" Url="html/2764110D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsValidDataType method" Url="html/CAD74DBD.htm" />
+  <HelpKINode Title="Largest enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="Last enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="LessThan enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="LessThanOrEq enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices namespace" Url="html/E65DED07.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.AttributeChangeExtentions class" Url="html/D70B2681.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.AttributeChangeSerializable class" Url="html/A2E22820.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.ComparisonEngine class" Url="html/27F95AC1.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.CSEntryChangeDeserializer class" Url="html/E59F7C1D.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.CSEntryChangeExtensions class" Url="html/A901C645.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.CSEntryChangeQueue class" Url="html/C0CF58A4.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.CSEntryChangeSerializer class" Url="html/A9BC09B7.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.DataContractSurrogates namespace" Url="html/1F167D8E.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.DataContractSurrogates.CSEntryChangeSerializable class" Url="html/FBF228F4.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.DataContractSurrogates.SerializationSurrogate class" Url="html/26784D07.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.ExtendedAttributeType enumeration" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.GenericExtensions class" Url="html/F2AE45D5.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.NotFoundException class" Url="html/AEE8C590.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.PresenceOperator enumeration" Url="html/6ADBA33E.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.SchemaExtensions class" Url="html/56CE7E67.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.TypeConverter class" Url="html/EFBDF2FF.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.UnknownOrUnsupportedDataTypeException class" Url="html/E44E8B07.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.UnknownOrUnsupportedModificationTypeException class" Url="html/3786E195.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.UnknownOrUnsupportedValueOperatorException class" Url="html/67996777.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.ValueChangeSerializable class" Url="html/7E7FBAF9.htm" />
+  <HelpKINode Title="Lithnet.MetadirectoryServices.ValueOperator enumeration" Url="html/2764110D.htm" />
+  <HelpKINode Title="LoadQueue method" Url="html/D4F4C29.htm" />
+  <HelpKINode Title="ModificationType property" Url="html/D430F004.htm" />
+  <HelpKINode Title="Name property" Url="html/F17717B7.htm" />
+  <HelpKINode Title="None enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="NotContains enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="NotEquals enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="NotFoundException class">
+    <HelpKINode Title="NotFoundException Class" Url="html/AEE8C590.htm" />
+    <HelpKINode Title="about NotFoundException class" Url="html/AEE8C590.htm" />
+    <HelpKINode Title="constructor" Url="html/5DB083C9.htm" />
+    <HelpKINode Title="events" Url="html/78D466E3.htm" />
+    <HelpKINode Title="methods" Url="html/55C3EF5E.htm" />
+    <HelpKINode Title="properties" Url="html/5B0AE63D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="NotFoundException.NotFoundException constructor" Url="html/5DB083C9.htm" />
+  <HelpKINode Title="NotPresent enumeration member">
+    <HelpKINode Title="PresenceOperator Enumeration" Url="html/6ADBA33E.htm" />
+    <HelpKINode Title="ValueOperator Enumeration" Url="html/2764110D.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ObjectModificationType property" Url="html/C8D60638.htm" />
+  <HelpKINode Title="ObjectType property" Url="html/731E0C4F.htm" />
+  <HelpKINode Title="Or enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="PresenceOperator enumeration" Url="html/6ADBA33E.htm" />
+  <HelpKINode Title="ProcessImportedType method" Url="html/2B153AB2.htm" />
+  <HelpKINode Title="RDN property" Url="html/3E221B13.htm" />
+  <HelpKINode Title="Reference enumeration member" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="ResourceManagementServiceDateFormat field" Url="html/ACE2903A.htm" />
+  <HelpKINode Title="ResourceManagementServiceDateFormatZeroedMilliseconds field" Url="html/124129D2.htm" />
+  <HelpKINode Title="SaveQueue method" Url="html/47E7DF5C.htm" />
+  <HelpKINode Title="SchemaExtensions class">
+    <HelpKINode Title="SchemaExtensions Class" Url="html/56CE7E67.htm" />
+    <HelpKINode Title="about SchemaExtensions class" Url="html/56CE7E67.htm" />
+    <HelpKINode Title="methods" Url="html/2446F3D4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SchemaExtensions.HasAttribute method" Url="html/9B59A4D0.htm" />
+  <HelpKINode Title="SchemaExtensions.HasObjectClass method" Url="html/7CD0B1B9.htm" />
+  <HelpKINode Title="SerializationSurrogate class">
+    <HelpKINode Title="SerializationSurrogate Class" Url="html/26784D07.htm" />
+    <HelpKINode Title="about SerializationSurrogate class" Url="html/26784D07.htm" />
+    <HelpKINode Title="constructor" Url="html/BDB08CC.htm" />
+    <HelpKINode Title="methods" Url="html/F4CFE8C2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SerializationSurrogate.GetCustomDataToExport method" Url="html/E0E51951.htm" />
+  <HelpKINode Title="SerializationSurrogate.GetDataContractType method" Url="html/2DA1064F.htm" />
+  <HelpKINode Title="SerializationSurrogate.GetDeserializedObject method" Url="html/1F718A69.htm" />
+  <HelpKINode Title="SerializationSurrogate.GetKnownCustomDataTypes method" Url="html/85343EE4.htm" />
+  <HelpKINode Title="SerializationSurrogate.GetObjectToSerialize method" Url="html/BE6923AB.htm" />
+  <HelpKINode Title="SerializationSurrogate.GetReferencedTypeOnImport method" Url="html/7377A1BB.htm" />
+  <HelpKINode Title="SerializationSurrogate.ProcessImportedType method" Url="html/2B153AB2.htm" />
+  <HelpKINode Title="SerializationSurrogate.SerializationSurrogate constructor" Url="html/BDB08CC.htm" />
+  <HelpKINode Title="Serialize method" Url="html/E0EFBC5C.htm" />
+  <HelpKINode Title="Smallest enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="StartsWith enumeration member" Url="html/2764110D.htm" />
+  <HelpKINode Title="String enumeration member" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="Take method" Url="html/8D377A6.htm" />
+  <HelpKINode Title="ThrowOnAnyInvalidDataType method" Url="html/F6FD992D.htm" />
+  <HelpKINode Title="ThrowOnInvalidDataType method" Url="html/910243A.htm" />
+  <HelpKINode Title="ToAttributeType method" Url="html/B2E1BA7A.htm" />
+  <HelpKINode Title="ToCommaSeparatedString method" Url="html/914BC32D.htm" />
+  <HelpKINode Title="ToExtendedAttributeType method" Url="html/182ADBB6.htm" />
+  <HelpKINode Title="ToList method" Url="html/82F2A85D.htm" />
+  <HelpKINode Title="ToNewLineSeparatedString method" Url="html/C23DCCF8.htm" />
+  <HelpKINode Title="ToResourceManagementServiceDateFormat method" Url="html/ECBAE21C.htm" />
+  <HelpKINode Title="ToSeparatedString method" Url="html/F8F79A52.htm" />
+  <HelpKINode Title="ToSmartString method" Url="html/27205053.htm" />
+  <HelpKINode Title="ToSmartStringOrEmptyString method" Url="html/CC666B50.htm" />
+  <HelpKINode Title="ToSmartStringOrNull method" Url="html/9E32E726.htm" />
+  <HelpKINode Title="ToValueChange(Of T) method" Url="html/3CC4F0B8.htm" />
+  <HelpKINode Title="ToValueChange&lt;T&gt; method" Url="html/3CC4F0B8.htm" />
+  <HelpKINode Title="ToValueChangeAdd(Of T) method" Url="html/B73A9930.htm" />
+  <HelpKINode Title="ToValueChangeAdd&lt;T&gt; method" Url="html/B73A9930.htm" />
+  <HelpKINode Title="ToValueChangeDelete(Of T) method" Url="html/32C39DD4.htm" />
+  <HelpKINode Title="ToValueChangeDelete&lt;T&gt; method" Url="html/32C39DD4.htm" />
+  <HelpKINode Title="Truncate method" Url="html/DB19A444.htm" />
+  <HelpKINode Title="TruncateString method" Url="html/A5065D51.htm" />
+  <HelpKINode Title="TryConvertData method" Url="html/72C9E11B.htm" />
+  <HelpKINode Title="TypeConverter class">
+    <HelpKINode Title="TypeConverter Class" Url="html/EFBDF2FF.htm" />
+    <HelpKINode Title="about TypeConverter class" Url="html/EFBDF2FF.htm" />
+    <HelpKINode Title="methods" Url="html/5D785B14.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TypeConverter.ConvertData method" Url="html/75591B18.htm" />
+  <HelpKINode Title="TypeConverter.GetDataType method" Url="html/3B9F240E.htm" />
+  <HelpKINode Title="TypeConverter.GetDataTypeExtended method" Url="html/3BC2D6AE.htm" />
+  <HelpKINode Title="TypeConverter.IsValidDataType method" Url="html/CAD74DBD.htm" />
+  <HelpKINode Title="TypeConverter.ThrowOnAnyInvalidDataType method" Url="html/F6FD992D.htm" />
+  <HelpKINode Title="TypeConverter.ThrowOnInvalidDataType method" Url="html/910243A.htm" />
+  <HelpKINode Title="TypeConverter.TryConvertData method" Url="html/72C9E11B.htm" />
+  <HelpKINode Title="Undefined enumeration member" Url="html/F0B51D96.htm" />
+  <HelpKINode Title="UnknownOrUnsupportedDataTypeException class">
+    <HelpKINode Title="UnknownOrUnsupportedDataTypeException Class" Url="html/E44E8B07.htm" />
+    <HelpKINode Title="about UnknownOrUnsupportedDataTypeException class" Url="html/E44E8B07.htm" />
+    <HelpKINode Title="constructor" Url="html/28E8AD97.htm" />
+    <HelpKINode Title="events" Url="html/AC93CB18.htm" />
+    <HelpKINode Title="methods" Url="html/1050A149.htm" />
+    <HelpKINode Title="properties" Url="html/61A2F0FB.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnknownOrUnsupportedDataTypeException.UnknownOrUnsupportedDataTypeException constructor" Url="html/28E8AD97.htm" />
+  <HelpKINode Title="UnknownOrUnsupportedModificationTypeException class">
+    <HelpKINode Title="UnknownOrUnsupportedModificationTypeException Class" Url="html/3786E195.htm" />
+    <HelpKINode Title="about UnknownOrUnsupportedModificationTypeException class" Url="html/3786E195.htm" />
+    <HelpKINode Title="constructor" Url="html/811E214A.htm" />
+    <HelpKINode Title="events" Url="html/F46648A1.htm" />
+    <HelpKINode Title="methods" Url="html/9F5FDE80.htm" />
+    <HelpKINode Title="properties" Url="html/FFECF63F.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnknownOrUnsupportedModificationTypeException.UnknownOrUnsupportedModificationTypeException constructor" Url="html/811E214A.htm" />
+  <HelpKINode Title="UnknownOrUnsupportedValueOperatorException class">
+    <HelpKINode Title="UnknownOrUnsupportedValueOperatorException Class" Url="html/67996777.htm" />
+    <HelpKINode Title="about UnknownOrUnsupportedValueOperatorException class" Url="html/67996777.htm" />
+    <HelpKINode Title="constructor" Url="html/4E41DF32.htm" />
+    <HelpKINode Title="events" Url="html/EB03AD78.htm" />
+    <HelpKINode Title="methods" Url="html/C41A8B0B.htm" />
+    <HelpKINode Title="properties" Url="html/D165AE8B.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UnknownOrUnsupportedValueOperatorException.UnknownOrUnsupportedValueOperatorException constructor" Url="html/4E41DF32.htm" />
+  <HelpKINode Title="Value property" Url="html/4FA9F811.htm" />
+  <HelpKINode Title="ValueChanges property" Url="html/A7547585.htm" />
+  <HelpKINode Title="ValueChangeSerializable class">
+    <HelpKINode Title="ValueChangeSerializable Class" Url="html/7E7FBAF9.htm" />
+    <HelpKINode Title="about ValueChangeSerializable class" Url="html/7E7FBAF9.htm" />
+    <HelpKINode Title="methods" Url="html/7334F30A.htm" />
+    <HelpKINode Title="properties" Url="html/8F73A78B.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ValueChangeSerializable.Value property" Url="html/4FA9F811.htm" />
+  <HelpKINode Title="ValueOperator enumeration" Url="html/2764110D.htm" />
+</HelpKI>

@@ -81,7 +81,7 @@ namespace Lithnet.MetadirectoryServices
                 case ObjectModificationType.None:
                 case ObjectModificationType.Unconfigured:
                 default:
-                    throw new NotSupportedException(string.Format("Unsupported modification type {0}", csentry.ObjectModificationType));
+                    throw new NotSupportedException($"Unsupported modification type {csentry.ObjectModificationType}");
             }
 
             writer.WriteEndElement(); // </object-change>

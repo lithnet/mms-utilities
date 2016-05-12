@@ -27,9 +27,9 @@ namespace Lithnet.MetadirectoryServices
             {
                 using (XmlReader reader = XmlReader.Create(r))
                 {
-                    var doc = XDocument.Load(reader);
+                    XDocument doc = XDocument.Load(reader);
 
-                    foreach (var node in doc.Root.Elements("object-change"))
+                    foreach (XElement node in doc.Root.Elements("object-change"))
                     {
                         CSEntryChange csentry = CSEntryChangeDeserializer.Deserialize(node);
                         csentries.Add(csentry);
@@ -65,7 +65,7 @@ namespace Lithnet.MetadirectoryServices
                 throw new ArgumentException("The XML node provided was not an <object-change> node", "node");
             }
 
-            foreach (var child in element.Elements())
+            foreach (XElement child in element.Elements())
             {
                 if (child.Name.LocalName == "modification-type")
                 {
@@ -91,11 +91,11 @@ namespace Lithnet.MetadirectoryServices
                 }
                 else if (child.Name.LocalName == "attribute-changes")
                 {
-                    XmlReadAttributeChangesNode(child, csentry);
+                    CSEntryChangeDeserializer.XmlReadAttributeChangesNode(child, csentry);
                 }
                 else if (child.Name.LocalName == "anchor-attributes")
                 {
-                    XmlReadAnchorAttributesNode(child, csentry);
+                    CSEntryChangeDeserializer.XmlReadAnchorAttributesNode(child, csentry);
                 }
             }
         }
@@ -107,7 +107,7 @@ namespace Lithnet.MetadirectoryServices
         /// <param name="csentry">The <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> to populate</param>
         private static void XmlReadAttributeChangesNode(XElement element, CSEntryChange csentry)
         {
-            foreach (var child in element.Elements().Where(t => t.Name.LocalName == "attribute-change"))
+            foreach (XElement child in element.Elements().Where(t => t.Name.LocalName == "attribute-change"))
             {
                 CSEntryChangeDeserializer.XmlReadAttributeChangeNode(child, csentry);
             }
@@ -120,7 +120,7 @@ namespace Lithnet.MetadirectoryServices
         /// <param name="csentry">The <see cref="Microsoft.MetadirectoryServices.CSEntryChange">CSEntryChange</see> to populate</param>
         private static void XmlReadAnchorAttributesNode(XElement element, CSEntryChange csentry)
         {
-            foreach (var child in element.Elements().Where(t => t.Name.LocalName == "anchor-attribute"))
+            foreach (XElement child in element.Elements().Where(t => t.Name.LocalName == "anchor-attribute"))
             {
                 CSEntryChangeDeserializer.XmlReadAnchorAttributeNode(child, csentry);
             }
@@ -136,7 +136,7 @@ namespace Lithnet.MetadirectoryServices
             string name = null;
             string value = null;
 
-            foreach (var child in element.Elements())
+            foreach (XElement child in element.Elements())
             {
                 if (child.Name.LocalName == "name")
                 {
@@ -177,7 +177,7 @@ namespace Lithnet.MetadirectoryServices
             List<ValueChange> valueChanges = null;
             AttributeChange attributeChange = null;
 
-            foreach (var child in element.Elements())
+            foreach (XElement child in element.Elements())
             {
                 if (child.Name.LocalName == "name")
                 {
@@ -217,6 +217,11 @@ namespace Lithnet.MetadirectoryServices
                 }
             }
 
+            if (valueChanges == null)
+            {
+                return;
+            }
+
             switch (modificationType)
             {
                 case AttributeModificationType.Add:
@@ -226,7 +231,7 @@ namespace Lithnet.MetadirectoryServices
                         return;
                     }
 
-                    attributeChange = AttributeChange.CreateAttributeAdd(name, valueChanges.Where(t => t.ModificationType == ValueModificationType.Add).Select(t => t.Value).ToList());
+                    attributeChange = AttributeChange.CreateAttributeAdd(name, (valueChanges.Where(t => t.ModificationType == ValueModificationType.Add)).Select(t => t.Value).ToList());
                     break;
 
                 case AttributeModificationType.Replace:
@@ -237,7 +242,7 @@ namespace Lithnet.MetadirectoryServices
                         //throw new ArgumentException("The attribute replace in the CSEntry provided no values");
                     }
 
-                    attributeChange = AttributeChange.CreateAttributeReplace(name, valueChanges.Where(t => t.ModificationType == ValueModificationType.Add).Select(t => t.Value).ToList());
+                    attributeChange = AttributeChange.CreateAttributeReplace(name, (valueChanges.Where(t => t.ModificationType == ValueModificationType.Add)).Select(t => t.Value).ToList());
                     break;
 
                 case AttributeModificationType.Delete:
@@ -258,7 +263,7 @@ namespace Lithnet.MetadirectoryServices
 
                 case AttributeModificationType.Unconfigured:
                 default:
-                    throw new NotSupportedException(string.Format("The modification type is not supported {0}", modificationType));
+                    throw new NotSupportedException($"The modification type is not supported {modificationType}");
             }
 
             csentry.AttributeChanges.Add(attributeChange);
@@ -275,7 +280,7 @@ namespace Lithnet.MetadirectoryServices
         {
             List<ValueChange> valueChanges = new List<ValueChange>();
 
-            foreach (var child in element.Elements().Where(t => t.Name.LocalName == "value-change"))
+            foreach (XElement child in element.Elements().Where(t => t.Name.LocalName == "value-change"))
             {
                 ValueChange change = CSEntryChangeDeserializer.XmlReadValueChangeNode(child, attributeType);
                 if (change != null)
@@ -298,7 +303,7 @@ namespace Lithnet.MetadirectoryServices
             ValueModificationType modificationType = ValueModificationType.Unconfigured;
             string value = null;
 
-            foreach (var child in element.Elements())
+            foreach (XElement child in element.Elements())
             {
                 if (child.Name.LocalName == "modification-type")
                 {
@@ -330,7 +335,7 @@ namespace Lithnet.MetadirectoryServices
 
                 case ValueModificationType.Unconfigured:
                 default:
-                    throw new NotSupportedException(string.Format("The modification type is not supported {0}", modificationType));
+                    throw new NotSupportedException($"The modification type is not supported {modificationType}");
             }
         }
     }

@@ -532,6 +532,22 @@ namespace Lithnet.MetadirectoryServices
         /// <param name="type">The schema type of the object class of the CSEntryChange</param>
         /// <param name="attributeName">The name of the attribute</param>
         /// <param name="modificationType">The type of modification to apply to the attribute</param>
+        /// <param name="valueChanges">The value changes to apply to the modification operation</param>
+        public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, IList<ValueChange> valueChanges)
+        {
+            if (type.HasAttribute(attributeName) && valueChanges != null && valueChanges.Count > 0)
+            {
+                csentry.CreateAttributeChange(attributeName,  modificationType, valueChanges);
+            }
+        }
+
+        /// <summary>
+        /// Creates an AttributeChange of the specified type, provided that the attribute is present in the provided schema type
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to add the AttributeChange to</param>
+        /// <param name="type">The schema type of the object class of the CSEntryChange</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <param name="modificationType">The type of modification to apply to the attribute</param>
         /// <param name="value">The value to apply to the modification operation</param>
         public static void CreateAttributeChangeIfInSchema(this CSEntryChange csentry, SchemaType type, string attributeName, AttributeModificationType modificationType, bool value)
         {

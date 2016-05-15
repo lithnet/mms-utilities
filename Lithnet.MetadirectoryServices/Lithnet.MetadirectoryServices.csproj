@@ -70,6 +70,7 @@
     <Compile Include="Exceptions\UnknownOrUnsupportedModificationTypeException.cs" />
     <Compile Include="Exceptions\UnknownOrUnsupportedValueOperatorException.cs" />
     <Compile Include="GenericExtensions.cs" />
+    <Compile Include="MmsUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaExtensions.cs" />
     <Compile Include="TypeConverter.cs" />

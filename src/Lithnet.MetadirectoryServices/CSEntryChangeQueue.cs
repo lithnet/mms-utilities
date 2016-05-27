@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.MetadirectoryServices;
+using System.Collections.ObjectModel;
 
 namespace Lithnet.MetadirectoryServices
 {
@@ -14,14 +15,14 @@ namespace Lithnet.MetadirectoryServices
         /// <summary>
         /// The internal dictionary to hold the CSEntryChange objects
         /// </summary>
-        private static Dictionary<string, CSEntryChange> queue;
+        private static List<CSEntryChange> queue;
 
         /// <summary>
         /// Initializes the static instance of the CSEntryChangeQueue
         /// </summary>
         static CSEntryChangeQueue()
         {
-            CSEntryChangeQueue.queue = new Dictionary<string, CSEntryChange>();
+            CSEntryChangeQueue.queue = new List<CSEntryChange>();
         }
 
         /// <summary>
@@ -36,14 +37,15 @@ namespace Lithnet.MetadirectoryServices
 
                 foreach (CSEntryChange csentry in CSEntryChangeDeserializer.Deserialize(filename))
                 {
-                    if (CSEntryChangeQueue.queue.ContainsKey(csentry.DN))
-                    {
-                        CSEntryChangeQueue.queue[csentry.DN] = csentry;
-                    }
-                    else
-                    {
-                        CSEntryChangeQueue.queue.Add(csentry.DN, csentry);
-                    }
+                    CSEntryChangeQueue.Add(csentry);
+                    //if (CSEntryChangeQueue.queue.ContainsKey(csentry.DN))
+                    //{
+                    //    CSEntryChangeQueue.queue[csentry.DN] = csentry;
+                    //}
+                    //else
+                    //{
+                    //    CSEntryChangeQueue.queue.Add(csentry.DN, csentry);
+                    //}
                 }
             }
         }
@@ -57,7 +59,7 @@ namespace Lithnet.MetadirectoryServices
         {
             lock (CSEntryChangeQueue.queue)
             {
-                CSEntryChangeSerializer.Serialize(CSEntryChangeQueue.queue.Values, filename, schema);
+                CSEntryChangeSerializer.Serialize(CSEntryChangeQueue.queue, filename, schema);
             }
         }
 
@@ -78,24 +80,26 @@ namespace Lithnet.MetadirectoryServices
         /// <exception cref="System.InvalidOperationException">Thrown if <paramref name="overwrite"/> is set to false, and an object with the same DN was found in the queue</exception>
         public static void Add(CSEntryChange csentry, bool overwrite)
         {
-            lock (queue)
-            {
-                if (CSEntryChangeQueue.queue.ContainsKey(csentry.DN))
-                {
-                    if (overwrite)
-                    {
-                        CSEntryChangeQueue.queue[csentry.DN] = csentry;
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("A CSEntryChange with this DN already exists in the queue");
-                    }
-                }
-                else
-                {
-                    CSEntryChangeQueue.queue.Add(csentry.DN, csentry);
-                }
-            }
+            CSEntryChangeQueue.queue.Add(csentry);
+
+            //lock (queue)
+            //{
+            //    if (CSEntryChangeQueue.queue.ContainsKey(csentry.DN))
+            //    {
+            //        if (overwrite)
+            //        {
+            //            CSEntryChangeQueue.queue[csentry.DN] = csentry;
+            //        }
+            //        else
+            //        {
+            //            throw new InvalidOperationException("A CSEntryChange with this DN already exists in the queue");
+            //        }
+            //    }
+            //    else
+            //    {
+            //        CSEntryChangeQueue.queue.Add(csentry.DN, csentry);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -136,9 +140,9 @@ namespace Lithnet.MetadirectoryServices
                 {
                     throw new ArgumentOutOfRangeException("There are no items left in the queue");
                 }
-
-                CSEntryChange csentry = CSEntryChangeQueue.queue.First().Value;
-                CSEntryChangeQueue.queue.Remove(csentry.DN);
+                
+                CSEntryChange csentry = CSEntryChangeQueue.queue.First();
+                CSEntryChangeQueue.queue.Remove(csentry);
 
                 return csentry;
             }

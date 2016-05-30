@@ -636,6 +636,11 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
+        /// <summary>
+        /// Creates a text summary of the CSEntryChange and its contents
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to generate the summary for</param>
+        /// <returns>A string containing the detailed information stored in the CSEntryChange</returns>
         public static string ToDetailString(this CSEntryChange csentry)
         {
             StringBuilder sb = new StringBuilder();

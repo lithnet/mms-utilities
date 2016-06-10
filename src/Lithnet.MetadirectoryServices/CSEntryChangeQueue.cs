@@ -38,14 +38,6 @@ namespace Lithnet.MetadirectoryServices
                 foreach (CSEntryChange csentry in CSEntryChangeDeserializer.Deserialize(filename))
                 {
                     CSEntryChangeQueue.Add(csentry);
-                    //if (CSEntryChangeQueue.queue.ContainsKey(csentry.DN))
-                    //{
-                    //    CSEntryChangeQueue.queue[csentry.DN] = csentry;
-                    //}
-                    //else
-                    //{
-                    //    CSEntryChangeQueue.queue.Add(csentry.DN, csentry);
-                    //}
                 }
             }
         }
@@ -64,42 +56,15 @@ namespace Lithnet.MetadirectoryServices
         }
 
         /// <summary>
-        /// Adds an item to the CSEntryChange queue. This method overwrites any existing entry with the same DN
+        /// Adds an item to the CSEntryChange queue. 
         /// </summary>
         /// <param name="csentry">The CSEntryChange to add</param>
         public static void Add(CSEntryChange csentry)
         {
-            CSEntryChangeQueue.Add(csentry, true);
-        }
-
-        /// <summary>
-        /// Adds an item to the CSEntryChange queue
-        /// </summary>
-        /// <param name="csentry">The CSEntryChange to add</param>
-        /// <param name="overwrite">A value that indicates if an object in the queue with the same DN should be overwritten with this object if found</param>
-        /// <exception cref="System.InvalidOperationException">Thrown if <paramref name="overwrite"/> is set to false, and an object with the same DN was found in the queue</exception>
-        public static void Add(CSEntryChange csentry, bool overwrite)
-        {
-            CSEntryChangeQueue.queue.Add(csentry);
-
-            //lock (queue)
-            //{
-            //    if (CSEntryChangeQueue.queue.ContainsKey(csentry.DN))
-            //    {
-            //        if (overwrite)
-            //        {
-            //            CSEntryChangeQueue.queue[csentry.DN] = csentry;
-            //        }
-            //        else
-            //        {
-            //            throw new InvalidOperationException("A CSEntryChange with this DN already exists in the queue");
-            //        }
-            //    }
-            //    else
-            //    {
-            //        CSEntryChangeQueue.queue.Add(csentry.DN, csentry);
-            //    }
-            //}
+            lock (CSEntryChangeQueue.queue)
+            {
+                CSEntryChangeQueue.queue.Add(csentry);
+            }
         }
 
         /// <summary>

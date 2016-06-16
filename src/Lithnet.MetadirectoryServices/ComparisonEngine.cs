@@ -291,6 +291,61 @@ namespace Lithnet.MetadirectoryServices
             return ComparisonEngine.Compare(actualValue, expectedValue, valueOperator, type.ToExtendedAttributeType());
         }
 
+        public static bool Compare(Attrib attrib1, Attrib attrib2, ValueOperator valueOperator)
+        {
+            if (attrib1.DataType != attrib2.DataType)
+            {
+                return false;
+            }
+
+            if (attrib1.IsPresent != attrib2.IsPresent)
+            {
+                return false;
+            }
+
+            if (!attrib1.IsPresent && !attrib2.IsPresent)
+            {
+                return true;
+            }
+
+            if (attrib1.Values.Count != attrib2.Values.Count)
+            {
+                return false;
+            }
+
+            IEnumerable<object> values1;
+            IEnumerable<object> values2;
+
+            switch (attrib1.DataType)
+            {
+                case AttributeType.String:
+                    values1 = attrib1.Values.OfType<Value>().Select(t => t.ToString()).Cast<object>();
+                    values2 = attrib2.Values.OfType<Value>().Select(t => t.ToString()).Cast<object>();
+                    break;
+
+                case AttributeType.Integer:
+                    values1 = attrib1.Values.OfType<Value>().Select(t => t.ToInteger()).Cast<object>();
+                    values2 = attrib2.Values.OfType<Value>().Select(t => t.ToInteger()).Cast<object>();
+                    break;
+
+                case AttributeType.Binary:
+                    values1 = attrib1.Values.OfType<Value>().Select(t => t.ToBinary()).Cast<object>();
+                    values2 = attrib2.Values.OfType<Value>().Select(t => t.ToBinary()).Cast<object>();
+                    break;
+
+                case AttributeType.Boolean:
+                    values1 = attrib1.Values.OfType<Value>().Select(t => t.ToBoolean()).Cast<object>();
+                    values2 = attrib2.Values.OfType<Value>().Select(t => t.ToBoolean()).Cast<object>();
+                    break;
+
+                case AttributeType.Undefined:
+                default:
+                    throw new UnknownOrUnsupportedDataTypeException();
+            }
+
+            return values1.ContainsSameElements(values2);
+        }
+
         /// <summary>
         /// Compares two values of the specified ExtendedAttributeType
         /// </summary>
@@ -339,7 +394,7 @@ namespace Lithnet.MetadirectoryServices
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Compares a string using the specified ValueOperator
         /// </summary>
         /// <param name="actualValue">The value obtained from the query</param>

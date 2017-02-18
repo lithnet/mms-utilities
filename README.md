@@ -12,7 +12,7 @@ You can install this package directly from [NuGet](https://www.nuget.org/package
 This library requires .NET 4.0 or higher and FIM 2010 R2 version 4.1.3341 or above (including MIM 2016).
 
 ## Getting started
-Read the [API documentation](http://documentation.lithiumblue.com/lithnet/msu)
+Read the [API documentation](https://lithnet.github.io/documentation/msu)
 
 ## How can I contribute to the project
 Found an issue?

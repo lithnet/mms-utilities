@@ -63,7 +63,12 @@ namespace Lithnet.MetadirectoryServices
 
         internal CSEntryChange GetObject()
         {
-            CSEntryChangeDetached csentry = new CSEntryChangeDetached(this.Identifier, this.ObjectModificationType, this.ErrorCodeImport, this.AttributeChanges.Select(t => t.Name).ToList());
+            CSEntryChangeDetached csentry = new CSEntryChangeDetached(
+                this.Identifier, 
+                this.ObjectModificationType, 
+                this.ErrorCodeImport,
+                this.AttributeChanges?.Select(t => t.Name).ToList() ?? new List<string>());
+
             csentry.DN = this.DN;
             csentry.ErrorDetail = this.ErrorDetail;
             csentry.ErrorName = this.ErrorName;

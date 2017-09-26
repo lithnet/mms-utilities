@@ -4,14 +4,14 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Text.RegularExpressions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.MetadirectoryServices;
+
 namespace Lithnet.MetadirectoryServices
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Microsoft.MetadirectoryServices;
-
     /// <summary>
     /// Provides methods for comparing values
     /// </summary>
@@ -119,6 +119,8 @@ namespace Lithnet.MetadirectoryServices
                 yield return ValueOperator.NotContains;
                 yield return ValueOperator.StartsWith;
                 yield return ValueOperator.EndsWith;
+                yield return ValueOperator.RegexMatch;
+                yield return ValueOperator.RegexNotMatch;
             }
         }
 
@@ -493,6 +495,12 @@ namespace Lithnet.MetadirectoryServices
                     }
 
                     break;
+
+                case ValueOperator.RegexMatch:
+                    return Regex.IsMatch(actualValue, expectedValue);
+
+                case ValueOperator.RegexNotMatch:
+                    return !Regex.IsMatch(actualValue, expectedValue);
 
                 case ValueOperator.GreaterThan:
                 case ValueOperator.LessThan:

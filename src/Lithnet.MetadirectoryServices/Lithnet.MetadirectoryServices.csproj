@@ -83,7 +83,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>d:\NuGet\NuGet.exe pack $(ProjectPath) -OutputDirectory D:\nuget\packages</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)"=="Release" ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /sha1 $(CSCERTTHUMBPRINT) /t http://time.certum.pl /v $(TargetFileName) )
+d:\NuGet\NuGet.exe pack $(ProjectPath) -OutputDirectory D:\nuget\packages</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

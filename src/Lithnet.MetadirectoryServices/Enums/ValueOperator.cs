@@ -128,6 +128,18 @@ namespace Lithnet.MetadirectoryServices
         /// Gets the last value from a set of values
         /// </summary>
         [Description("Last")]
-        Last
+        Last,
+
+        /// <summary>
+        /// The value must match a regular expression
+        /// </summary>
+        [Description("Regular expression match")]
+        RegexMatch,
+
+        /// <summary>
+        /// The value must not match a regular expression
+        /// </summary>
+        [Description("Regular expression does not match")]
+        RegexNotMatch,
     }
 }

@@ -128,7 +128,7 @@
         {
             if (obj == null)
             {
-                throw new ArgumentNullException("obj");
+                throw new ArgumentNullException(nameof(obj));
             }
 
             Type t = obj.GetType();
@@ -168,7 +168,7 @@
         {
             if (obj == null)
             {
-                throw new ArgumentNullException("obj");
+                throw new ArgumentNullException(nameof(obj));
             }
 
             Type objectType = obj.GetType();
@@ -299,6 +299,10 @@
             else if (typeof(T) == typeof(DateTime))
             {
                 return (T)TypeConverter.ConvertToDateTime(obj);
+            }
+            else if (typeof(T) == typeof(object))
+            {
+                return (T)obj;
             }
             else
             {

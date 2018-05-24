@@ -224,7 +224,7 @@ namespace Lithnet.MetadirectoryServices
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeAdd(attributeName, value));
@@ -240,7 +240,7 @@ namespace Lithnet.MetadirectoryServices
         {
             if (values == null)
             {
-                throw new ArgumentNullException("values");
+                throw new ArgumentNullException(nameof(values));
             }
 
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeAdd(attributeName, values));
@@ -266,7 +266,7 @@ namespace Lithnet.MetadirectoryServices
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             csentry.AttributeChanges.Add(AttributeChange.CreateAttributeReplace(attributeName, value));
@@ -282,7 +282,7 @@ namespace Lithnet.MetadirectoryServices
         {
             if (values == null)
             {
-                throw new ArgumentNullException("values");
+                throw new ArgumentNullException(nameof(values));
             }
 
             if (values.Count == 0)

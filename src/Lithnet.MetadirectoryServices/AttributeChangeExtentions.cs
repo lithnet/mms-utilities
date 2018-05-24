@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -64,10 +65,61 @@ namespace Lithnet.MetadirectoryServices
 
             foreach (ValueChange valueChange in valueChanges)
             {
-                list.Add((T)valueChange.Value);
+                list.Add(TypeConverter.ConvertData<T>(valueChange.Value));
             }
 
             return list;
+        }
+
+        public static T ApplyAttributeChange<T>(this AttributeChange change)
+        {
+            if (change.IsMultiValued)
+            {
+                throw new InvalidOperationException("Cannot use this method on a multivalued attribute");
+            }
+
+            return change.GetValueAdd<T>();
+        }
+
+        public static IList<object> ApplyAttributeChanges(this AttributeChange change, IList existingItems)
+        {
+            switch (change.DataType)
+            {
+                case AttributeType.String:
+                case AttributeType.Reference:
+                    return ApplyAttributeChanges<string>(change, existingItems, StringComparer.CurrentCulture);
+
+                case AttributeType.Integer:
+                    return ApplyAttributeChanges<long>(change, existingItems, EqualityComparer<long>.Default);
+
+                case AttributeType.Binary:
+                    return ApplyAttributeChanges<byte[]>(change, existingItems, BinaryEqualityComparer.Default);
+
+                case AttributeType.Boolean:
+                    return ApplyAttributeChanges<bool>(change, existingItems, EqualityComparer<bool>.Default);
+
+                default:
+                    throw new UnknownOrUnsupportedDataTypeException();
+            }
+        }
+
+        public static IList<object> ApplyAttributeChanges<T>(this AttributeChange change, IList existingItems, IEqualityComparer<T> comparer)
+        {
+            HashSet<T> newItems = new HashSet<T>();
+            ICollection<T> valueAdds = change.GetValueAdds<T>();
+            ICollection<T> valueDeletes = change.GetValueDeletes<T>();
+
+            foreach (T value in valueAdds)
+            {
+                newItems.Add(value);
+            }
+
+            foreach (T value in valueDeletes)
+            {
+                newItems.Remove(value);
+            }
+
+            return newItems.Cast<object>().ToList();
         }
     }
 }

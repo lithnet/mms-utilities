@@ -66,7 +66,7 @@ namespace Lithnet.MetadirectoryServices
         public static string ConvertToUnsecureString(this SecureString securePassword)
         {
             if (securePassword == null)
-                throw new ArgumentNullException("securePassword");
+                throw new ArgumentNullException(nameof(securePassword));
 
             IntPtr unmanagedString = IntPtr.Zero;
             try
@@ -273,7 +273,7 @@ namespace Lithnet.MetadirectoryServices
 
             if (totalLength <= 3)
             {
-                throw new ArgumentException("The maxlength value must be greater than 3", "totalLength");
+                throw new ArgumentException("The maxlength value must be greater than 3", nameof(totalLength));
             }
 
             if (obj.Length > totalLength)

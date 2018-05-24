@@ -105,10 +105,28 @@ namespace Lithnet.MetadirectoryServices
 
         public static IList<object> ApplyAttributeChanges<T>(this AttributeChange change, IList existingItems, IEqualityComparer<T> comparer)
         {
-            HashSet<T> newItems = new HashSet<T>();
+            if (change.ModificationType == AttributeModificationType.Delete)
+            {
+                return null;
+            }
+
+            if (existingItems == null)
+            {
+                existingItems = new List<object>();
+            }
+
+            HashSet<T> newItems = new HashSet<T>(existingItems.Cast<object>().Select(TypeConverter.ConvertData<T>), comparer);
             ICollection<T> valueAdds = change.GetValueAdds<T>();
             ICollection<T> valueDeletes = change.GetValueDeletes<T>();
 
+            if (change.ModificationType == AttributeModificationType.Replace)
+            {
+                foreach (var item in existingItems)
+                {
+                    valueDeletes.Add((T)item);
+                }
+            }
+            
             foreach (T value in valueAdds)
             {
                 newItems.Add(value);

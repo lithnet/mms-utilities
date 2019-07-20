@@ -14,12 +14,10 @@ This library requires .NET 4.0 or higher and FIM 2010 R2 version 4.1.3341 or abo
 ## Getting started
 Read the [API documentation](https://lithnet.github.io/documentation/msu)
 
-## How can I contribute to the project
-Found an issue?
-* [Log it](https://github.com/lithnet/mms-utilities/issues)
-
-Want to fix an issue?
-* Clone the project and submit a pull request 
+## How can I contribute to the project?
+* Found an issue and want us to fix it? [Log it](https://github.com/lithnet/mms-utilities/issues)
+* Want to fix an issue yourself or add functionality? Clone the project and submit a pull request
+* Make a [donation](https://lithnet.io/donate) and help us cover our costs
 
 ## Keep up to date
 * [Visit my blog](http://blog.lithiumblue.com)

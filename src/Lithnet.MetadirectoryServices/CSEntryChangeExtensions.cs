@@ -152,6 +152,62 @@ namespace Lithnet.MetadirectoryServices
         }
 
         /// <summary>
+        /// Gets a value indicating if the specified attribute is present in the list of attribute changes
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to evaluate</param>
+        /// <param name="attributeName">The name of the attribute to find</param>
+        /// <param name="modificationType">The type of modification to the attribute</param>
+        /// <returns>True if the CSEntryChange contains an AttributeChange for the specified attribute</returns>
+        public static bool HasAttributeChange(this CSEntryChange csentry, string attributeName, AttributeModificationType modificationType)
+        {
+            return csentry.AttributeChanges.Any(t => t.Name == attributeName && t.ModificationType == modificationType);
+        }
+
+        /// <summary>
+        /// Gets a value indicating if the specified attribute delete is present in the list of attribute changes
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to evaluate</param>
+        /// <param name="attributeName">The name of the attribute to find</param>
+        /// <returns>True if the CSEntryChange contains an AttributeChange for the specified attribute</returns>
+        public static bool HasAttributeChangeDelete(this CSEntryChange csentry, string attributeName)
+        {
+            return csentry.HasAttributeChange(attributeName, AttributeModificationType.Delete);
+        }
+
+        /// <summary>
+        /// Gets a value indicating if the specified attribute add is present in the list of attribute changes
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to evaluate</param>
+        /// <param name="attributeName">The name of the attribute to find</param>
+        /// <returns>True if the CSEntryChange contains an AttributeChange for the specified attribute</returns>
+        public static bool HasAttributeChangeAdd(this CSEntryChange csentry, string attributeName)
+        {
+            return csentry.HasAttributeChange(attributeName, AttributeModificationType.Add);
+        }
+
+        /// <summary>
+        /// Gets a value indicating if the specified attribute update is present in the list of attribute changes
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to evaluate</param>
+        /// <param name="attributeName">The name of the attribute to find</param>
+        /// <returns>True if the CSEntryChange contains an AttributeChange for the specified attribute</returns>
+        public static bool HasAttributeChangeUpdate(this CSEntryChange csentry, string attributeName)
+        {
+            return csentry.HasAttributeChange(attributeName, AttributeModificationType.Update);
+        }
+
+        /// <summary>
+        /// Gets a value indicating if the specified attribute replace is present in the list of attribute changes
+        /// </summary>
+        /// <param name="csentry">The CSEntryChange to evaluate</param>
+        /// <param name="attributeName">The name of the attribute to find</param>
+        /// <returns>True if the CSEntryChange contains an AttributeChange for the specified attribute</returns>
+        public static bool HasAttributeChangeReplace(this CSEntryChange csentry, string attributeName)
+        {
+            return csentry.HasAttributeChange(attributeName, AttributeModificationType.Replace);
+        }
+
+        /// <summary>
         /// Gets all the value adds for the specified attribute
         /// </summary>
         /// <typeparam name="T">The data type of the atttribute</typeparam>

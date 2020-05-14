@@ -66,9 +66,12 @@ namespace Lithnet.MetadirectoryServices
         public static string ConvertToUnsecureString(this SecureString securePassword)
         {
             if (securePassword == null)
+            {
                 throw new ArgumentNullException(nameof(securePassword));
+            }
 
             IntPtr unmanagedString = IntPtr.Zero;
+
             try
             {
                 unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
@@ -78,6 +81,25 @@ namespace Lithnet.MetadirectoryServices
             {
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
+        }
+
+        /// <summary>
+        /// Converts a string into a SecureString
+        /// </summary>
+        /// <param name="s">The string of text to convert</param>
+        /// <returns>The converted string as a SecureString object</returns>
+        public static SecureString ToSecureString(this string s)
+        {
+            SecureString ss = new SecureString();
+
+            foreach (char c in s)
+            {
+                ss.AppendChar(c);
+            }
+
+            ss.MakeReadOnly();
+
+            return ss;
         }
 
         /// <summary>

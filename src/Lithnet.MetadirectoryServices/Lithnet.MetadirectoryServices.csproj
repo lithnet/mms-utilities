@@ -24,6 +24,7 @@
     <DocumentationFile>
     </DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Lithnet.MetadirectoryServices.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.MetadirectoryServicesEx, Version=4.1.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -53,6 +55,7 @@
     <Compile Include="BinaryEqualityComparer.cs" />
     <Compile Include="ComparisonEngine.cs" />
     <Compile Include="CSEntryChangeDeserializer.cs" />
+    <Compile Include="CSEntryChangeResultExtensions.cs" />
     <Compile Include="CSEntryChangeExtensions.cs" />
     <Compile Include="CSEntryChangeQueue.cs" />
     <Compile Include="CSEntryChangeSerializer.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="Exceptions\UnknownOrUnsupportedDataTypeException.cs" />
     <Compile Include="Exceptions\UnknownOrUnsupportedModificationTypeException.cs" />
     <Compile Include="Exceptions\UnknownOrUnsupportedValueOperatorException.cs" />
+    <Compile Include="ConfigParameterExtensions.cs" />
     <Compile Include="GenericExtensions.cs" />
     <Compile Include="MmsUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

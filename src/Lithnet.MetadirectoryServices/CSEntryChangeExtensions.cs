@@ -60,15 +60,15 @@ namespace Lithnet.MetadirectoryServices
         /// <returns>The new DN, or default(T) if a DN change was not present</returns>
         public static T GetNewDNOrDefault<T>(this CSEntryChange csentry)
         {
-            AttributeChange change = csentry.AttributeChanges.FirstOrDefault(t => t.Name == "DN");
+            AttributeChange change = csentry.AttributeChanges.FirstOrDefault(t => string.Equals(t.Name, "DN", StringComparison.OrdinalIgnoreCase));
 
             if (change != null)
             {
-                return (T)change.ValueChanges.First(t => t.ModificationType == ValueModificationType.Add).Value;
+                return (T)change.ValueChanges.FirstOrDefault(t => t.ModificationType == ValueModificationType.Add)?.Value ?? default;
             }
             else
             {
-                return default(T);
+                return default;
             }
         }
 

@@ -1,65 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F996930E-8FD5-4641-83B0-6F18867E9761}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lithnet.MetadirectoryServices.Resolver</RootNamespace>
-    <AssemblyName>Lithnet.MetadirectoryServices.Resolver</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Installer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Installer.designer.cs">
-      <DependentUpon>Installer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MmsAssemblyResolver.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Package\Lithnet.MetadirectoryServices.Resolver.nuspec" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>d:\NuGet\NuGet.exe pack $(ProjectPath)</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<AssemblyTitle>Lithnet MetadirectoryServices Resolver</AssemblyTitle>
+		<Company>Lithnet</Company>
+		<Authors>Lithnet</Authors>
+		<Product>Lithnet MetadirectoryServices</Product>
+		<Description>Lithnet MetadirectoryServices Resolvder</Description>
+		<Deterministic>true</Deterministic>
+		<Version>2.0</Version>
+		<Platforms>AnyCPU</Platforms>
+		<Prefer32Bit>false</Prefer32Bit>
+		<Description>The Lithnet Metadirectory Services Assembly Resolver package is a .NET library for FIM/MIM code projects that need to be able to locate and load Microsoftt.MetadirectoryServicesEx.dll outside of the synchronization engine process</Description>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="System.Configuration.Install" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Installer.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Update="Installer.designer.cs">
+			<DependentUpon>Installer.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	
 </Project>

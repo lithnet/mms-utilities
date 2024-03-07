@@ -1,15 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lithnet.MetadirectoryServices", "Lithnet.MetadirectoryServices\Lithnet.MetadirectoryServices.csproj", "{1945C053-72CE-4AC0-8A7F-4AF43D936B44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lithnet.MetadirectoryServices", "Lithnet.MetadirectoryServices\Lithnet.MetadirectoryServices.csproj", "{1945C053-72CE-4AC0-8A7F-4AF43D936B44}"
 EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Lithnet.MetadirectoryServices.Help", "Lithnet.MetadirectoryServices.Help\Lithnet.MetadirectoryServices.Help.shfbproj", "{DFE8E177-D9A4-4E88-A836-4EFFF0DC1343}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lithnet.MetadirectoryServices.Resolver", "Lithnet.MetadirectoryServices.Resolver\Lithnet.MetadirectoryServices.Resolver.csproj", "{F996930E-8FD5-4641-83B0-6F18867E9761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lithnet.MetadirectoryServices.Help.Examples", "Lithnet.MetadirectoryServices.Help.Examples\Lithnet.MetadirectoryServices.Help.Examples.csproj", "{DEE09244-515A-4756-AA4C-9533898CEA37}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lithnet.MetadirectoryServices.Resolver", "Lithnet.MetadirectoryServices.Resolver\Lithnet.MetadirectoryServices.Resolver.csproj", "{F996930E-8FD5-4641-83B0-6F18867E9761}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{47CBED23-F1A7-48C4-B79E-70E7C838FB56}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\azure-pipelines.yml = ..\build\azure-pipelines.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,13 +22,6 @@ Global
 		{1945C053-72CE-4AC0-8A7F-4AF43D936B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1945C053-72CE-4AC0-8A7F-4AF43D936B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1945C053-72CE-4AC0-8A7F-4AF43D936B44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFE8E177-D9A4-4E88-A836-4EFFF0DC1343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFE8E177-D9A4-4E88-A836-4EFFF0DC1343}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFE8E177-D9A4-4E88-A836-4EFFF0DC1343}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DEE09244-515A-4756-AA4C-9533898CEA37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEE09244-515A-4756-AA4C-9533898CEA37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DEE09244-515A-4756-AA4C-9533898CEA37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DEE09244-515A-4756-AA4C-9533898CEA37}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F996930E-8FD5-4641-83B0-6F18867E9761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F996930E-8FD5-4641-83B0-6F18867E9761}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F996930E-8FD5-4641-83B0-6F18867E9761}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F70352AF-B908-44A3-B922-79A5A6F15C85}
 	EndGlobalSection
 EndGlobal

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.ComponentModel;
-using System.Configuration.Install;
-using System.Linq;
 using System.Diagnostics;
 
 namespace Lithnet.MetadirectoryServices.Resolver
@@ -13,7 +9,7 @@ namespace Lithnet.MetadirectoryServices.Resolver
     {
         public Installer()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             MmsAssemblyResolver.RegisterResolver();
         }
 

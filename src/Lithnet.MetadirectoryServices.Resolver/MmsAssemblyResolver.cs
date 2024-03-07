@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using Microsoft.Win32;
-using System.IO;
-using System.Diagnostics;
 
 namespace Lithnet.MetadirectoryServices.Resolver
 {
@@ -177,7 +174,7 @@ namespace Lithnet.MetadirectoryServices.Resolver
                 eventLog.Source = "Lithnet.MetadirectoryServices.Resolver";
                 eventLog.WriteEntry(message, type, id);
             }
-            catch 
+            catch
             {
             }
         }

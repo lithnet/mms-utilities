@@ -48,6 +48,10 @@ stages:
           arguments: '-c $(buildConfiguration) -p:Version=$(build.version) -p:GeneratePackageOnBuild=false'
           projects: 'src/Lithnet.MetadirectoryServices/Lithnet.MetadirectoryServices.csproj'
 
+      - task: PublishSymbols@2
+        inputs:
+          SearchPattern: '**/*.pdb'
+          SymbolServerType: 'TeamServices'
 
       - task: DotNetCoreCLI@2
         inputs:

@@ -10,11 +10,34 @@
 		<Version>2.0</Version>
 		<Platforms>AnyCPU</Platforms>
 		<Prefer32Bit>false</Prefer32Bit>
-		<Description>The Lithnet Metadirectory Services Assembly Resolver package is a .NET library for FIM/MIM code projects that need to be able to locate and load Microsoftt.MetadirectoryServicesEx.dll outside of the synchronization engine process</Description>
+		<Description>The Lithnet Metadirectory Services Assembly Resolver package is a .NET library for FIM/MIM code projects that need to be able to locate and load Microsoft.MetadirectoryServicesEx.dll outside of the synchronization engine process</Description>
+		<IsPackable>true</IsPackable>
+		<PackageId>Lithnet.MetadirectoryServices.Resolver</PackageId>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/lithnet/mms-utilities</RepositoryUrl>
+		<SupportUrl>https://github.com/lithnet/mms-utilities</SupportUrl>
+		<PackageOutputPath>D:\dev\nuget\packages</PackageOutputPath>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Reference Include="System.Configuration.Install" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<Compile Update="Installer.cs">
 			<SubType>Component</SubType>
@@ -23,5 +46,5 @@
 			<DependentUpon>Installer.cs</DependentUpon>
 		</Compile>
 	</ItemGroup>
-	
+
 </Project>

@@ -51,6 +51,7 @@ stages:
       - task: PublishSymbols@2
         inputs:
           SearchPattern: '**/*.pdb'
+          IndexSources: false
           SymbolServerType: 'TeamServices'
 
       - task: DotNetCoreCLI@2

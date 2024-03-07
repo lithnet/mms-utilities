@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net462</TargetFramework>
 		<AssemblyTitle>Lithnet MetadirectoryServices Resolver</AssemblyTitle>
 		<Company>Lithnet</Company>
 		<Authors>Lithnet</Authors>
